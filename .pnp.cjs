@@ -30,7 +30,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@commitlint/cli", "npm:17.4.4"],\
             ["@commitlint/config-conventional", "npm:17.4.4"],\
-            ["astro", "virtual:52dda26497bbb9256d9c633dce91723bdd1bc17e6862704355b94e93a20b8c8f6d074a85e2f872ae7b3c38d9828a241beac53169480615ec88677c21fa5c57fb#npm:2.1.2"]\
+            ["astro", "virtual:52dda26497bbb9256d9c633dce91723bdd1bc17e6862704355b94e93a20b8c8f6d074a85e2f872ae7b3c38d9828a241beac53169480615ec88677c21fa5c57fb#npm:2.1.2"],\
+            ["husky", "npm:8.0.3"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -2750,7 +2751,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["genshin-todo-list", "workspace:."],\
             ["@commitlint/cli", "npm:17.4.4"],\
             ["@commitlint/config-conventional", "npm:17.4.4"],\
-            ["astro", "virtual:52dda26497bbb9256d9c633dce91723bdd1bc17e6862704355b94e93a20b8c8f6d074a85e2f872ae7b3c38d9828a241beac53169480615ec88677c21fa5c57fb#npm:2.1.2"]\
+            ["astro", "virtual:52dda26497bbb9256d9c633dce91723bdd1bc17e6862704355b94e93a20b8c8f6d074a85e2f872ae7b3c38d9828a241beac53169480615ec88677c21fa5c57fb#npm:2.1.2"],\
+            ["husky", "npm:8.0.3"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -3155,6 +3157,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["humanize-ms", "npm:1.2.1"],\
             ["ms", "npm:2.1.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["husky", [\
+        ["npm:8.0.3", {\
+          "packageLocation": "./.yarn/cache/husky-npm-8.0.3-b0b59c5127-837bc7e441.zip/node_modules/husky/",\
+          "packageDependencies": [\
+            ["husky", "npm:8.0.3"]\
           ],\
           "linkType": "HARD"\
         }]\

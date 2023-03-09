@@ -8,13 +8,15 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "commitmsg": "commitlint -e $GIT_PARAMS"
   },
   "dependencies": {
     "astro": "^2.0.18"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.4",
-    "@commitlint/config-conventional": "^17.4.4"
+    "@commitlint/config-conventional": "^17.4.4",
+    "husky": "^8.0.3"
   }
 }
