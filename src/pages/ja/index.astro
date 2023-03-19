@@ -1,9 +1,10 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Todos from "../components/Todos.astro";
-import { getLanguageFromURL } from "../util";
-import { vocabulary, type Vocabulary } from "../data/todo";
+import Layout from "../../layouts/Layout.astro";
+import Todos from "../../components/Todos.astro";
+import { getLanguageFromURL } from "../../util";
+import { vocabulary, type Vocabulary } from "../../data/todo";
 const lang = getLanguageFromURL(Astro.url.pathname);
+console.log(Astro.url.pathname);
 
 let data: Vocabulary;
 switch (lang) {
