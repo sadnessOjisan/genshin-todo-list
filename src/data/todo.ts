@@ -1,12 +1,23 @@
+export const KEYS = {
+  JUSHI: "jushi",
+  MISSION1: "mission1",
+  MISSION2: "mission2",
+  MISSION3: "mission3",
+  MISSION4: "mission4",
+  WEEKLY_BOSS1: "weekly_boss1",
+  WEEKLY_BOSS2: "weekly_boss2",
+  WEEKLY_BOSS3: "weekly_boss3",
+} as const;
+
 export interface Vocabulary {
-  jushi: string;
-  mission1: string;
-  mission2: string;
-  mission3: string;
-  mission4: string;
-  weekly_boss1: string;
-  weekly_boss2: string;
-  weekly_boss3: string;
+  [KEYS.JUSHI]: string;
+  [KEYS.MISSION1]: string;
+  [KEYS.MISSION2]: string;
+  [KEYS.MISSION3]: string;
+  [KEYS.MISSION4]: string;
+  [KEYS.WEEKLY_BOSS1]: string;
+  [KEYS.WEEKLY_BOSS2]: string;
+  [KEYS.WEEKLY_BOSS3]: string;
 }
 
 const enVocabulary: Vocabulary = {

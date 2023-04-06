@@ -1,5 +1,5 @@
 ---
-import type { Vocabulary } from "../data/todo";
+import { KEYS, Vocabulary } from "../data/todo";
 
 export interface Props {
   lang: string;
@@ -23,19 +23,20 @@ const { lang, data } = Astro.props as Props; // FIXME: without `as`, it fails ty
 
 <div>
   <h2>daily</h2>
-  {lang}
-  <label for="jushi">{data.jushi}</label>
-  <input name="todo" id="jushi" type="checkbox" value="jushi" />
-  <label for="mission1">{data.mission1}</label>
-  <input id="mission1" type="checkbox" value="mission1" />
+  <label for={KEYS.JUSHI}>{data.jushi}</label>
+  <input name="todo" id={KEYS.JUSHI} type="checkbox" value={KEYS.JUSHI} />
+  <label for={KEYS.MISSION1}>{data.jushi}</label>
+  <input name="todo" id={KEYS.MISSION1} type="checkbox" value={KEYS.MISSION1} />
+
   <h2>weekly</h2>
-  <label for="weekly_boss1">{data.weekly_boss1}</label>
-  <input id="weekly_boss1" type="checkbox" value="weekly_boss1" />
-  <label for="weekly_boss2">{data.weekly_boss2}</label>
-  <input id="weekly_boss2" type="checkbox" value="weekly_boss2" />
-  <label for="weekly_boss3">{data.weekly_boss3}</label>
-  <input id="weekly_boss3" type="checkbox" value="weekly_boss3" />
+  <label for={KEYS.WEEKLY_BOSS1}>{data.weekly_boss1}</label>
+  <input id={KEYS.WEEKLY_BOSS1} type="checkbox" value={KEYS.WEEKLY_BOSS1} />
+  <label for={KEYS.WEEKLY_BOSS2}>{data.weekly_boss2}</label>
+  <input id={KEYS.WEEKLY_BOSS2} type="checkbox" value={KEYS.WEEKLY_BOSS2} />
+  <label for={KEYS.WEEKLY_BOSS3}>{data.weekly_boss3}</label>
+  <input id={KEYS.WEEKLY_BOSS3} type="checkbox" value={KEYS.WEEKLY_BOSS3} />
 </div>
+
 <style>
   .link-card {
     list-style: none;
