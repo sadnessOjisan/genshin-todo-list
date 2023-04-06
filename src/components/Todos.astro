@@ -9,20 +9,32 @@ export interface Props {
 const { lang, data } = Astro.props as Props; // FIXME: without `as`, it fails typing.
 ---
 
+<script>
+  const checkboxes = document.querySelectorAll("input[type='checkbox']");
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener("change", (e) => {
+      if (e.target === null || !(e.target instanceof HTMLInputElement)) {
+        throw new Error("");
+      }
+      console.log(e.target.value);
+    });
+  });
+</script>
+
 <div>
   <h2>daily</h2>
   {lang}
   <label for="jushi">{data.jushi}</label>
-  <input id="jushi" type="checkbox" />
+  <input name="todo" id="jushi" type="checkbox" value="jushi" />
   <label for="mission1">{data.mission1}</label>
-  <input id="mission1" type="checkbox" />
+  <input id="mission1" type="checkbox" value="mission1" />
   <h2>weekly</h2>
   <label for="weekly_boss1">{data.weekly_boss1}</label>
-  <input id="weekly_boss1" type="checkbox" />
+  <input id="weekly_boss1" type="checkbox" value="weekly_boss1" />
   <label for="weekly_boss2">{data.weekly_boss2}</label>
-  <input id="weekly_boss2" type="checkbox" />
+  <input id="weekly_boss2" type="checkbox" value="weekly_boss2" />
   <label for="weekly_boss3">{data.weekly_boss3}</label>
-  <input id="weekly_boss3" type="checkbox" />
+  <input id="weekly_boss3" type="checkbox" value="weekly_boss3" />
 </div>
 <style>
   .link-card {
