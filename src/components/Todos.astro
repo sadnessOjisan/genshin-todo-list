@@ -25,8 +25,14 @@ const { lang, data } = Astro.props as Props; // FIXME: without `as`, it fails ty
   <h2>daily</h2>
   <label for={KEYS.JUSHI}>{data.jushi}</label>
   <input name="todo" id={KEYS.JUSHI} type="checkbox" value={KEYS.JUSHI} />
-  <label for={KEYS.MISSION1}>{data.jushi}</label>
+  <label for={KEYS.MISSION1}>{data.mission1}</label>
   <input name="todo" id={KEYS.MISSION1} type="checkbox" value={KEYS.MISSION1} />
+  <label for={KEYS.MISSION2}>{data.mission2}</label>
+  <input name="todo" id={KEYS.MISSION2} type="checkbox" value={KEYS.MISSION2} />
+  <label for={KEYS.MISSION3}>{data.mission3}</label>
+  <input name="todo" id={KEYS.MISSION3} type="checkbox" value={KEYS.MISSION3} />
+  <label for={KEYS.MISSION4}>{data.mission4}</label>
+  <input name="todo" id={KEYS.MISSION4} type="checkbox" value={KEYS.MISSION4} />
 
   <h2>weekly</h2>
   <label for={KEYS.WEEKLY_BOSS1}>{data.weekly_boss1}</label>
