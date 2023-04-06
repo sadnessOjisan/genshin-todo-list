@@ -16,6 +16,10 @@ switch (lang) {
     console.error("lang: ", lang);
     throw new Error("");
 }
+
+export function getStaticPaths() {
+  return [{ params: { lang: "ja" } }, { params: { lang: "en" } }];
+}
 ---
 
 <Layout title="Welcome to Astro.">

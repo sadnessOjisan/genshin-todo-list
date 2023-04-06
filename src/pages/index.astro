@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Todos from "../components/Todos.astro";
 import { getLanguageFromURL } from "../util";
 import { vocabulary, type Vocabulary } from "../data/todo";
+
 const lang = getLanguageFromURL(Astro.url.pathname);
 
 let data: Vocabulary;
@@ -19,7 +20,6 @@ switch (lang) {
 
 <Layout title="Welcome to Astro.">
   <main>
-    <h1>Welcome to <span class="text-gradient">Astro</span></h1>
     <Todos lang={lang} data={data} />
   </main>
 </Layout>
