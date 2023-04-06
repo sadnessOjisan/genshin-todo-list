@@ -22,8 +22,9 @@ export function getStaticPaths() {
 ---
 
 <Layout title="Welcome to Astro.">
+  <button>{data.reset_local_storage}</button>
   <main>
-    <h1>Welcome to <span class="text-gradient">Astro</span></h1>
+    <h1><span class="text-gradient">{data["title"]}</span></h1>
     <Todos lang={lang} data={data} />
   </main>
 </Layout>

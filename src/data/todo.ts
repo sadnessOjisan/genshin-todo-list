@@ -1,4 +1,6 @@
 export const KEYS = {
+  TITLE: "title",
+  RESET_LOCAL_STORAGE: "reset_local_storage",
   JUSHI: "jushi",
   MISSION1: "mission1",
   MISSION2: "mission2",
@@ -10,6 +12,8 @@ export const KEYS = {
 } as const;
 
 export interface Vocabulary {
+  [KEYS.TITLE]: string;
+  [KEYS.RESET_LOCAL_STORAGE]: string;
   [KEYS.JUSHI]: string;
   [KEYS.MISSION1]: string;
   [KEYS.MISSION2]: string;
@@ -21,6 +25,8 @@ export interface Vocabulary {
 }
 
 const enVocabulary: Vocabulary = {
+  title: "genshin todo manage system",
+  reset_local_storage: "reset all todos",
   jushi: "jushi syohi",
   mission1: "mission1",
   mission2: "mission2",
@@ -32,6 +38,8 @@ const enVocabulary: Vocabulary = {
 } as const;
 
 const jaVocabulary: Vocabulary = {
+  title: "原神TODO管理システム",
+  reset_local_storage: "TODOを全てリセットする",
   jushi: "樹脂消費",
   mission1: "ミッション1",
   mission2: "ミッション2",
