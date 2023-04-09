@@ -14,30 +14,56 @@ const { data } = Astro.props as Props; // FIXME: without `as`, it fails typing.
 
   const checkboxes = document.querySelectorAll("input[type='checkbox']");
   checkboxes.forEach((checkbox) => {
+    if (!(checkbox instanceof HTMLInputElement)) {
+      throw new Error("checkbox should be HTMLInputElement");
+    }
     checkbox.addEventListener("change", (e) => {
       if (e.target === null || !(e.target instanceof HTMLInputElement)) {
         throw new Error("");
       }
 
-      switch (e.target.value) {
-        case KEYS.JUSHI:
-        case KEYS.MISSION1:
-        case KEYS.MISSION2:
-        case KEYS.MISSION3:
-        case KEYS.MISSION4:
-          alert("daily");
-          return;
+      // TODO: validate e.target.value which is a member of KEYS.
 
-        case KEYS.WEEKLY_BOSS1:
-        case KEYS.WEEKLY_BOSS2:
-        case KEYS.WEEKLY_BOSS3:
-          alert("weekly");
-          return;
-        default:
-          alert(e.target.value);
+      if (e.target.checked) {
+        // Save saved date.
+        localStorage.setItem(e.target.value, new Date().toISOString());
+      } else {
+        localStorage.removeItem(e.target.value);
       }
-      console.log(e.target.value);
     });
+
+    console.log(checkbox.id);
+    switch (checkbox.id) {
+      case KEYS.JUSHI:
+      case KEYS.MISSION1:
+      case KEYS.MISSION2:
+      case KEYS.MISSION3:
+      case KEYS.MISSION4: {
+        const savedDateString = localStorage.getItem(checkbox.id);
+        if (savedDateString === null) break;
+        const savedDate = new Date(savedDateString);
+        const expireDate = new Date(savedDate.setDate(savedDate.getDate() + 1));
+        const now = new Date();
+        if (now > expireDate) {
+          checkbox.checked = false;
+        }
+        return;
+      }
+      case KEYS.WEEKLY_BOSS1:
+      case KEYS.WEEKLY_BOSS2:
+      case KEYS.WEEKLY_BOSS3: {
+        const savedDateString = localStorage.getItem(checkbox.id);
+        if (savedDateString === null) break;
+        const savedDate = new Date(savedDateString);
+        const expireDate = new Date(savedDate.setDate(savedDate.getDate() + 7));
+        const now = new Date();
+        if (now > expireDate) {
+          checkbox.checked = false;
+        }
+        return;
+      }
+      default:
+    }
   });
 </script>
 
