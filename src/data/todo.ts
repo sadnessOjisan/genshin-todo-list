@@ -2,6 +2,7 @@ export const KEYS = {
   TITLE: "title",
   RESET_LOCAL_STORAGE: "reset_local_storage",
   DAILY_RESET_DESCRIPTION: "dayly_reset_description",
+  WEEKLY_RESET_DESCRIPTION: "weekly_reset_description",
   JUSHI: "jushi",
   MISSION1: "mission1",
   MISSION2: "mission2",
@@ -16,6 +17,7 @@ export interface Vocabulary {
   [KEYS.TITLE]: string;
   [KEYS.RESET_LOCAL_STORAGE]: string;
   [KEYS.DAILY_RESET_DESCRIPTION]: string;
+  [KEYS.WEEKLY_RESET_DESCRIPTION]: string;
   [KEYS.JUSHI]: string;
   [KEYS.MISSION1]: string;
   [KEYS.MISSION2]: string;
@@ -30,6 +32,7 @@ const enVocabulary: Vocabulary = {
   title: "genshin todo manage system",
   reset_local_storage: "reset all todos",
   dayly_reset_description: "reset at AM5:00 every day",
+  weekly_reset_description: "reset at AM5:00 every monday",
   jushi: "jushi syohi",
   mission1: "mission1",
   mission2: "mission2",
@@ -44,6 +47,7 @@ const jaVocabulary: Vocabulary = {
   title: "原神TODO管理システム",
   reset_local_storage: "TODOを全てリセットする",
   dayly_reset_description: "毎日 AM5:00 にリセットされます",
+  weekly_reset_description: "毎週月曜日 AM5:00 にリセットされます",
   jushi: "樹脂消費",
   mission1: "ミッション1",
   mission2: "ミッション2",
