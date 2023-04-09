@@ -21,8 +21,42 @@ export function getStaticPaths() {
 }
 ---
 
+<script>
+  import { getLanguageFromURL } from "../../util";
+
+  const langSelectorEl = document.getElementById("langSelector");
+
+  if (langSelectorEl === null) throw new Error("el should be");
+
+  langSelectorEl.addEventListener("change", (e) => {
+    if (e.target === null || !(e.target instanceof HTMLSelectElement)) {
+      throw new Error("target should be select el");
+    }
+    window.location.href = `/${e.target.value}`;
+  });
+
+  const options = document.querySelectorAll(".langSelectorItem");
+  options.forEach((option) => {
+    if (!(option instanceof HTMLOptionElement)) {
+      throw new Error("option should be HTMLOptionElement");
+    }
+    const currentLang = getLanguageFromURL(window.location.pathname);
+    console.log(option);
+    if (option.value === currentLang) {
+      option.selected = true;
+    }
+  });
+</script>
+
 <Layout title="Welcome to Astro.">
   <button>{data.reset_local_storage}</button>
+  <div>
+    lang: <select id="langSelector"
+      ><option class="langSelectorItem">ja</option><option
+        class="langSelectorItem">en</option
+      ></select
+    >
+  </div>
   <main>
     <h1><span class="text-gradient">{data["title"]}</span></h1>
     <Todos lang={lang} data={data} />
