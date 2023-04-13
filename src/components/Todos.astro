@@ -106,56 +106,96 @@ const REGISTER_DATE_ID_TRAILER = "register-date";
   });
 </script>
 
-<div>
-  <h2>daily</h2>
-  <p>{data.dayly_reset_description}</p>
-  <label for={KEYS.JUSHI}>{data.jushi}</label>
-  <input name="todo" id={KEYS.JUSHI} type="checkbox" value={KEYS.JUSHI} />
-  <label for={KEYS.MISSION1}
-    >{data.mission1}<span
-      id={`${KEYS.JUSHI}-${REGISTER_DATE_ID_TRAILER}`}
-      class="todo-date-text"></span></label
-  >
-  <input name="todo" id={KEYS.MISSION1} type="checkbox" value={KEYS.MISSION1} />
-  <label for={KEYS.MISSION2}
-    >{data.mission2}<span
-      id={`${KEYS.MISSION2}-${REGISTER_DATE_ID_TRAILER}`}
-      class="todo-date-text"></span></label
-  >
-  <input name="todo" id={KEYS.MISSION2} type="checkbox" value={KEYS.MISSION2} />
-  <label for={KEYS.MISSION3}
-    >{data.mission3}<span
-      id={`${KEYS.MISSION3}-${REGISTER_DATE_ID_TRAILER}`}
-      class="todo-date-text"></span></label
-  >
-  <input name="todo" id={KEYS.MISSION3} type="checkbox" value={KEYS.MISSION3} />
-  <label for={KEYS.MISSION4}
-    >{data.mission4}<span
-      id={`${KEYS.MISSION4}-${REGISTER_DATE_ID_TRAILER}`}
-      class="todo-date-text"></span></label
-  >
-  <input name="todo" id={KEYS.MISSION4} type="checkbox" value={KEYS.MISSION4} />
+<h2>daily</h2>
+<p>{data.dayly_reset_description}</p>
+<ul>
+  <li>
+    <input name="todo" id={KEYS.JUSHI} type="checkbox" value={KEYS.JUSHI} />
+    <label for={KEYS.JUSHI}
+      >{data.jushi}<span
+        id={`${KEYS.JUSHI}-${REGISTER_DATE_ID_TRAILER}`}
+        class="todo-date-text"></span></label
+    >
+  </li>
+  <li>
+    <input
+      name="todo"
+      id={KEYS.MISSION1}
+      type="checkbox"
+      value={KEYS.MISSION1}
+    />
+    <label for={KEYS.MISSION1}
+      >{data.mission1}<span
+        id={`${KEYS.MISSION1}-${REGISTER_DATE_ID_TRAILER}`}
+        class="todo-date-text"></span></label
+    >
+  </li>
+  <li>
+    <input
+      name="todo"
+      id={KEYS.MISSION2}
+      type="checkbox"
+      value={KEYS.MISSION2}
+    /><label for={KEYS.MISSION2}
+      >{data.mission2}<span
+        id={`${KEYS.MISSION2}-${REGISTER_DATE_ID_TRAILER}`}
+        class="todo-date-text"></span></label
+    >
+  </li>
+  <li>
+    <input
+      name="todo"
+      id={KEYS.MISSION3}
+      type="checkbox"
+      value={KEYS.MISSION3}
+    /><label for={KEYS.MISSION3}
+      >{data.mission3}<span
+        id={`${KEYS.MISSION3}-${REGISTER_DATE_ID_TRAILER}`}
+        class="todo-date-text"></span></label
+    >
+  </li>
+  <li>
+    <input
+      name="todo"
+      id={KEYS.MISSION4}
+      type="checkbox"
+      value={KEYS.MISSION4}
+    />
+    <label for={KEYS.MISSION4}
+      >{data.mission4}<span
+        id={`${KEYS.MISSION4}-${REGISTER_DATE_ID_TRAILER}`}
+        class="todo-date-text"></span></label
+    >
+  </li>
+</ul>
 
-  <h2>weekly</h2>
-  <p>{data.weekly_reset_description}</p>
-  <label for={KEYS.WEEKLY_BOSS1}
-    >{data.weekly_boss1}<span
-      id={`${KEYS.WEEKLY_BOSS1}-${REGISTER_DATE_ID_TRAILER}`}
-      class="todo-date-text"></span></label
-  >
-</div>
-<input id={KEYS.WEEKLY_BOSS1} type="checkbox" value={KEYS.WEEKLY_BOSS1} />
-<label for={KEYS.WEEKLY_BOSS2}
-  >{data.weekly_boss2}<span
-    id={`${KEYS.WEEKLY_BOSS2}-${REGISTER_DATE_ID_TRAILER}`}
-    class="todo-date-text"></span></label
->
-<input id={KEYS.WEEKLY_BOSS2} type="checkbox" value={KEYS.WEEKLY_BOSS2} />
-<label for={KEYS.WEEKLY_BOSS3}
-  >{data.weekly_boss3}<span
-    id={`${KEYS.WEEKLY_BOSS3}-${REGISTER_DATE_ID_TRAILER}`}
-    class="todo-date-text"></span></label
->
-<input id={KEYS.WEEKLY_BOSS3} type="checkbox" value={KEYS.WEEKLY_BOSS3} />
+<h2>weekly</h2>
+<p>{data.weekly_reset_description}</p>
+<ul>
+  <li>
+    <input id={KEYS.WEEKLY_BOSS1} type="checkbox" value={KEYS.WEEKLY_BOSS1} />
+    <label for={KEYS.WEEKLY_BOSS1}
+      >{data.weekly_boss1}<span
+        id={`${KEYS.WEEKLY_BOSS1}-${REGISTER_DATE_ID_TRAILER}`}
+        class="todo-date-text"></span></label
+    >
+  </li>
+  <li>
+    <input id={KEYS.WEEKLY_BOSS2} type="checkbox" value={KEYS.WEEKLY_BOSS2} />
+    <label for={KEYS.WEEKLY_BOSS2}
+      >{data.weekly_boss2}<span
+        id={`${KEYS.WEEKLY_BOSS2}-${REGISTER_DATE_ID_TRAILER}`}
+        class="todo-date-text"></span></label
+    >
+  </li>
+  <li>
+    <input id={KEYS.WEEKLY_BOSS3} type="checkbox" value={KEYS.WEEKLY_BOSS3} />
+    <label for={KEYS.WEEKLY_BOSS3}
+      >{data.weekly_boss3}<span
+        id={`${KEYS.WEEKLY_BOSS3}-${REGISTER_DATE_ID_TRAILER}`}
+        class="todo-date-text"></span></label
+    >
+  </li>
+</ul>
 
 <style></style>
