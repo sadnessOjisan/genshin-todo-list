@@ -12,7 +12,8 @@
     "commitmsg": "commitlint -e $GIT_PARAMS"
   },
   "dependencies": {
-    "astro": "^2.0.18"
+    "astro": "^2.0.18",
+    "firebase": "^9.19.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.4",
