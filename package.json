@@ -4,16 +4,11 @@
   "version": "0.0.1",
   "packageManager": "yarn@3.4.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
+    "dev": "next dev",
+    "start": "next start",
+    "build": "next build",
+    "export": "next export",
     "commitmsg": "commitlint -e $GIT_PARAMS"
-  },
-  "dependencies": {
-    "astro": "^2.0.18",
-    "firebase": "^9.19.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.4",
