@@ -1,8 +1,9 @@
 import { FC } from "react";
 import { Todos } from "../../client/todos";
+import { Lang } from "../../type/lang";
 
 interface RoutePath {
-  lang: "ja" | "en";
+  lang: Lang;
 }
 
 type Props = {
