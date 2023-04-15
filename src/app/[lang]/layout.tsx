@@ -11,7 +11,7 @@ export default function RootLayout({
   params: any;
 }) {
   return (
-    <html lang="ja">
+    <html lang={params.lang}>
       {JSON.stringify(params)}
       Next.js で書き換え中
       <body>{children}</body>
