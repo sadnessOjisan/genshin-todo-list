@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Todos } from "../../client/todos";
 
 interface RoutePath {
   lang: "ja" | "en";
@@ -13,6 +14,7 @@ const Page: FC<Props> = (props) => {
     <div>
       <h1>hello world</h1>
       <div>lang: {JSON.stringify(props.params.lang)}</div>
+      <Todos lang={props.params.lang} />
     </div>
   );
 };
