@@ -1,5 +1,6 @@
 import { type Lang } from "../type/lang";
 import { allElements } from "../util/array";
+import { add, isMonday, nextMonday, set } from "../util/date";
 
 type Cateogory = "daily_mission" | "weekly_mission";
 
@@ -30,7 +31,7 @@ interface Logic {
    * @params lastUpdated ユーザーがTODOを完了した日付
    * @return boolean TODOをリセットすべきなら true そうでないなら false
    */
-  func: (lastUpdated: Date) => boolean;
+  func: (lastUpdated: Date, now: Date) => boolean;
 }
 
 interface TODO_VALUE {
@@ -41,27 +42,52 @@ interface TODO_VALUE {
   category: Cateogory;
 }
 
-/**
- * デイリーミッションのTODOチェック解除ロジック
- * * TODO完了時点の次の AM5:00 に解除される。
- * @param lastUpdated lastUpdated ユーザーがTODOを完了した日付
- * @returns boolean TODOをリセットすべきなら true そうでないなら false
- */
-const dailyLogic = (lastUpdated: Date) => {
-  console.log(lastUpdated);
-  return false;
-};
+export class FreeCheckLogic {
+  /**
+   * デイリーミッションのTODOチェック解除ロジック
+   * * TODO完了時点の次の AM5:00 に解除される。
+   * @param lastUpdated lastUpdated ユーザーがTODOを完了した日付
+   * @returns boolean TODOをリセットすべきなら true そうでないなら false
+   */
+  static canFreeDailyTodo(lastUpdated: Date, now: Date) {
+    const hour = lastUpdated.getHours();
+    let dead: Date;
+    if (0 <= hour && hour < 5) {
+      dead = set(lastUpdated, { hours: 5, minutes: 0, seconds: 0 });
+    } else {
+      dead = set(add(lastUpdated, { days: 1 }), {
+        hours: 5,
+        minutes: 0,
+        seconds: 0,
+      });
+    }
+    return now > dead;
+  }
 
-/**
- * weeklyのTODOチェック解除ロジック
- * * TODO完了時点の次の AM5:00 に解除される。
- * @param lastUpdated lastUpdated ユーザーがTODOを完了した日付
- * @returns boolean TODOをリセットすべきなら true そうでないなら false
- */
-const weeklyLogic = (lastUpdated: Date) => {
-  console.log(lastUpdated);
-  return false;
-};
+  /**
+   * weekly TODOチェック解除ロジック
+   * * TODO完了時点の次の月曜 AM5:00 に解除される。
+   * @param lastUpdated lastUpdated ユーザーがTODOを完了した日付
+   * @returns boolean TODOをリセットすべきなら true そうでないなら false
+   */
+  static canFreeWeeklyTodo(lastUpdated: Date, now: Date) {
+    let dead: Date;
+    if (isMonday(lastUpdated)) {
+      dead = set(lastUpdated, {
+        hours: 5,
+        minutes: 0,
+        seconds: 0,
+      });
+    } else {
+      dead = set(nextMonday(lastUpdated), {
+        hours: 5,
+        minutes: 0,
+        seconds: 0,
+      });
+    }
+    return now > dead;
+  }
+}
 
 export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
   /**
@@ -80,7 +106,7 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
             return "TODO完了時点の次の AM5:00 に解除される。";
         }
       },
-      func: dailyLogic,
+      func: FreeCheckLogic.canFreeDailyTodo,
     },
     category: "daily_mission",
     name: (lang) => {
@@ -110,7 +136,7 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
             return "TODO完了時点の次の AM5:00 に解除される。";
         }
       },
-      func: dailyLogic,
+      func: FreeCheckLogic.canFreeDailyTodo,
     },
     category: "daily_mission",
     name: (lang) => {
@@ -140,7 +166,7 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
             return "TODO完了時点の次の AM5:00 に解除される。";
         }
       },
-      func: dailyLogic,
+      func: FreeCheckLogic.canFreeDailyTodo,
     },
     category: "daily_mission",
     name: (lang) => {
@@ -170,7 +196,7 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
             return "TODO完了時点の次の AM5:00 に解除される。";
         }
       },
-      func: dailyLogic,
+      func: FreeCheckLogic.canFreeDailyTodo,
     },
     category: "daily_mission",
     name: (lang) => {
@@ -197,7 +223,7 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
             return "毎週月曜日 AM5:00 に解除される。";
         }
       },
-      func: weeklyLogic,
+      func: FreeCheckLogic.canFreeWeeklyTodo,
     },
     category: "weekly_mission",
     name: (lang) => {
@@ -224,7 +250,7 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
             return "毎週月曜日 AM5:00 に解除される。";
         }
       },
-      func: weeklyLogic,
+      func: FreeCheckLogic.canFreeWeeklyTodo,
     },
     category: "weekly_mission",
     name: (lang) => {
@@ -251,7 +277,7 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
             return "毎週月曜日 AM5:00 に解除される。";
         }
       },
-      func: weeklyLogic,
+      func: FreeCheckLogic.canFreeWeeklyTodo,
     },
     category: "weekly_mission",
     name: (lang) => {

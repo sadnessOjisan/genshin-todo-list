@@ -66,22 +66,36 @@ export const Todos: FC<Props> = ({ lang }) => {
   const daily = useMemo(() => {
     return strictEntries(TODO_DATA)
       .filter((v) => v[1].category === "daily_mission")
-      .map((v) => ({
-        key: v[0],
-        value: v[1].name(lang),
-        logic: v[1].logic.descriptipon(lang),
-      }));
-  }, [lang]);
+      .map((v) => {
+        const todoKey = v[0];
+        const savedDate = state[todoKey];
+        return {
+          key: todoKey,
+          value: v[1].name(lang),
+          logic: v[1].logic.descriptipon(lang),
+          initialCheck: savedDate
+            ? v[1].logic.func(savedDate, new Date())
+            : false,
+        };
+      });
+  }, [lang, state]);
 
   const weekly = useMemo(() => {
     return strictEntries(TODO_DATA)
       .filter((v) => v[1].category === "weekly_mission")
-      .map((v) => ({
-        key: v[0],
-        value: v[1].name(lang),
-        logic: v[1].logic.descriptipon(lang),
-      }));
-  }, [lang]);
+      .map((v) => {
+        const todoKey = v[0];
+        const savedDate = state[todoKey];
+        return {
+          key: v[0],
+          value: v[1].name(lang),
+          logic: v[1].logic.descriptipon(lang),
+          initialCheck: savedDate
+            ? v[1].logic.func(savedDate, new Date())
+            : false,
+        };
+      });
+  }, [lang, state]);
 
   return (
     <div>
@@ -97,6 +111,7 @@ export const Todos: FC<Props> = ({ lang }) => {
                   id={d.key}
                   onChange={handleChangeCheckbox}
                   value={d.key}
+                  defaultChecked={d.initialCheck}
                 />
                 <label htmlFor={d.key}>
                   <p>
@@ -121,6 +136,7 @@ export const Todos: FC<Props> = ({ lang }) => {
                   id={d.key}
                   onChange={handleChangeCheckbox}
                   value={d.key}
+                  defaultChecked={d.initialCheck}
                 />
                 <label htmlFor={d.key}>
                   <p>
