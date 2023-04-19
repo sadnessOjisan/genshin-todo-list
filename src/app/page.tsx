@@ -1,10 +1,10 @@
 import { type FC } from "react";
+import { Todos } from "../client/todos";
 
 const Page: FC = () => {
   return (
     <div>
-      <h1>hello world</h1>
-      <div>yeah</div>
+      <Todos lang="ja" />
     </div>
   );
 };

@@ -80,26 +80,29 @@ export const Todos: FC<Props> = ({ lang }) => {
         logic: v[1].logic.descriptipon(lang),
       }));
   }, [lang]);
+
   return (
     <div>
-      {lang}
       <h2>daily</h2>
-      {JSON.stringify(state)}
       <ul>
         {daily.map((d) => {
           const time = state[d.key];
           return (
             <li>
-              <input
-                type="checkbox"
-                id={d.key}
-                onChange={handleChangeCheckbox}
-                value={d.key}
-              />
-              <label htmlFor={d.key}>
-                {d.value}({time && <Time time={time} />})
-              </label>
-              <span>{d.logic}</span>
+              <div style={{ display: "flex" }}>
+                <input
+                  type="checkbox"
+                  id={d.key}
+                  onChange={handleChangeCheckbox}
+                  value={d.key}
+                />
+                <label htmlFor={d.key}>
+                  <p>
+                    {d.value}(at {time && <Time time={time} />})
+                  </p>
+                  <p>{d.logic}</p>
+                </label>
+              </div>
             </li>
           );
         })}
@@ -110,16 +113,20 @@ export const Todos: FC<Props> = ({ lang }) => {
           const time = state[d.key];
           return (
             <li>
-              <input
-                type="checkbox"
-                id={d.key}
-                onChange={handleChangeCheckbox}
-                value={d.key}
-              />
-              <label htmlFor={d.key}>
-                {d.value}({time && <Time time={time} />})
-              </label>
-              <span>{d.logic}</span>
+              <div style={{ display: "flex" }}>
+                <input
+                  type="checkbox"
+                  id={d.key}
+                  onChange={handleChangeCheckbox}
+                  value={d.key}
+                />
+                <label htmlFor={d.key}>
+                  <p>
+                    {d.value}(at {time && <Time time={time} />})
+                  </p>
+                  <p>{d.logic}</p>
+                </label>
+              </div>
             </li>
           );
         })}

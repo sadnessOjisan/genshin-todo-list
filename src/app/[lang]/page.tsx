@@ -13,8 +13,6 @@ type Props = {
 const Page: FC<Props> = (props) => {
   return (
     <div>
-      <h1>hello world</h1>
-      <div>lang: {JSON.stringify(props.params.lang)}</div>
       <Todos lang={props.params.lang} />
     </div>
   );

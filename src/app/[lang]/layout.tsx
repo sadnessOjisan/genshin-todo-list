@@ -12,9 +12,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang={params.lang}>
-      {JSON.stringify(params)}
-      Next.js で書き換え中
-      <body>{children}</body>
+      <body>
+        <h1>原神 TODO LIST</h1>
+        {children}
+      </body>
     </html>
   );
 }
