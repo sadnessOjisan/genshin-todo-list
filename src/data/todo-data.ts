@@ -1,4 +1,5 @@
 import { type Lang } from "../type/lang";
+import { allElements } from "../util/array";
 
 type Cateogory = "daily_mission" | "weekly_mission";
 
@@ -10,6 +11,16 @@ export type TODO_KEY =
   | "weekly_boss1"
   | "weekly_boss2"
   | "weekly_boss3";
+
+export const TODO_KEYS = allElements<TODO_KEY>()([
+  "mission1",
+  "mission2",
+  "mission3",
+  "mission4",
+  "weekly_boss1",
+  "weekly_boss2",
+  "weekly_boss3",
+]);
 
 interface Logic {
   descriptipon: (lang: Lang) => string;

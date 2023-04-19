@@ -1,8 +1,10 @@
 "use client";
 
 import { type ChangeEvent, type FC, useEffect, useMemo, useState } from "react";
-import { TODO_DATA, type TODO_KEY } from "../data/todo-data";
+import { TODO_DATA, TODO_KEYS, type TODO_KEY } from "../data/todo-data";
+import { myStorage } from "../repository/local-storage";
 import type { Lang } from "../type/lang";
+import { isTodo } from "../util/assert";
 import { strictEntries } from "../util/object";
 
 interface Props {
@@ -22,13 +24,13 @@ export const Todos: FC<Props> = ({ lang }) => {
     weekly_boss3: null,
   });
   useEffect(() => {
-    const date1 = window.localStorage.getItem("mission1");
-    const date2 = window.localStorage.getItem("mission2");
-    const date3 = window.localStorage.getItem("mission3");
-    const date4 = window.localStorage.getItem("mission4");
-    const weeklyBoss1ExpiredDate = window.localStorage.getItem("weekly_boss1");
-    const weeklyBoss2ExpiredDate = window.localStorage.getItem("weekly_boss2");
-    const weeklyBoss3ExpiredDate = window.localStorage.getItem("weekly_boss3");
+    const date1 = myStorage.get("mission1");
+    const date2 = myStorage.get("mission2");
+    const date3 = myStorage.get("mission3");
+    const date4 = myStorage.get("mission4");
+    const weeklyBoss1ExpiredDate = myStorage.get("weekly_boss1");
+    const weeklyBoss2ExpiredDate = myStorage.get("weekly_boss2");
+    const weeklyBoss3ExpiredDate = myStorage.get("weekly_boss3");
 
     setState({
       mission1: date1,
@@ -44,13 +46,16 @@ export const Todos: FC<Props> = ({ lang }) => {
   const handleChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
     const checked = e.target.checked;
     const value = e.target.value;
+    if (!isTodo(value)) {
+      throw new Error("input value is not valid.");
+    }
 
     const now = new Date().toISOString();
     if (checked) {
-      window.localStorage.setItem(value, now);
+      myStorage.save(value, now);
       setState({ ...state, [value]: now });
     } else {
-      window.localStorage.removeItem(value);
+      myStorage.delete(value);
       setState({ ...state, [value]: null });
     }
   };
