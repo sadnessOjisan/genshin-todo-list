@@ -2,7 +2,7 @@
 
 import { type ChangeEvent, type FC, useEffect, useMemo, useState } from "react";
 import { TODO_DATA, type TODO_KEY } from "../data/todo-data";
-import { myStorage } from "../repository/local-storage";
+import { LocalStorabeWrapper } from "../repository/local-storage";
 import type { Lang } from "../type/lang";
 import { isTodo } from "../util/assert";
 import { strictEntries } from "../util/object";
@@ -25,6 +25,7 @@ export const Todos: FC<Props> = ({ lang }) => {
     weekly_boss3: null,
   });
   useEffect(() => {
+    const myStorage = new LocalStorabeWrapper(window.localStorage);
     const date1 = myStorage.getSavedDate("mission1");
     const date2 = myStorage.getSavedDate("mission2");
     const date3 = myStorage.getSavedDate("mission3");
@@ -45,6 +46,7 @@ export const Todos: FC<Props> = ({ lang }) => {
   }, []);
 
   const handleChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
+    const myStorage = new LocalStorabeWrapper(window.localStorage);
     const checked = e.target.checked;
     const value = e.target.value;
     if (!isTodo(value)) {

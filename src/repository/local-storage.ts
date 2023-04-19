@@ -1,6 +1,6 @@
 import type { TODO_KEY } from "../data/todo-data";
 
-class LocalStorabeWrapper {
+export class LocalStorabeWrapper {
   constructor(public storage: Storage) {}
 
   saveDate(key: TODO_KEY, item: Date) {
@@ -20,5 +20,3 @@ class LocalStorabeWrapper {
     this.storage.removeItem(key);
   }
 }
-
-export const myStorage = new LocalStorabeWrapper(window.localStorage);
