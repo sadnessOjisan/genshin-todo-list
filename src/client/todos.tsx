@@ -1,11 +1,12 @@
 "use client";
 
 import { type ChangeEvent, type FC, useEffect, useMemo, useState } from "react";
-import { TODO_DATA, TODO_KEYS, type TODO_KEY } from "../data/todo-data";
+import { TODO_DATA, type TODO_KEY } from "../data/todo-data";
 import { myStorage } from "../repository/local-storage";
 import type { Lang } from "../type/lang";
 import { isTodo } from "../util/assert";
 import { strictEntries } from "../util/object";
+import { Time } from "./time";
 
 interface Props {
   lang: Lang;
@@ -13,7 +14,7 @@ interface Props {
 
 export const Todos: FC<Props> = ({ lang }) => {
   const [state, setState] = useState<{
-    [x in TODO_KEY]: string | null;
+    [x in TODO_KEY]: Date | null;
   }>({
     mission1: null,
     mission2: null,
@@ -24,13 +25,13 @@ export const Todos: FC<Props> = ({ lang }) => {
     weekly_boss3: null,
   });
   useEffect(() => {
-    const date1 = myStorage.get("mission1");
-    const date2 = myStorage.get("mission2");
-    const date3 = myStorage.get("mission3");
-    const date4 = myStorage.get("mission4");
-    const weeklyBoss1ExpiredDate = myStorage.get("weekly_boss1");
-    const weeklyBoss2ExpiredDate = myStorage.get("weekly_boss2");
-    const weeklyBoss3ExpiredDate = myStorage.get("weekly_boss3");
+    const date1 = myStorage.getSavedDate("mission1");
+    const date2 = myStorage.getSavedDate("mission2");
+    const date3 = myStorage.getSavedDate("mission3");
+    const date4 = myStorage.getSavedDate("mission4");
+    const weeklyBoss1ExpiredDate = myStorage.getSavedDate("weekly_boss1");
+    const weeklyBoss2ExpiredDate = myStorage.getSavedDate("weekly_boss2");
+    const weeklyBoss3ExpiredDate = myStorage.getSavedDate("weekly_boss3");
 
     setState({
       mission1: date1,
@@ -50,9 +51,9 @@ export const Todos: FC<Props> = ({ lang }) => {
       throw new Error("input value is not valid.");
     }
 
-    const now = new Date().toISOString();
+    const now = new Date();
     if (checked) {
-      myStorage.save(value, now);
+      myStorage.saveDate(value, now);
       setState({ ...state, [value]: now });
     } else {
       myStorage.delete(value);
@@ -85,37 +86,43 @@ export const Todos: FC<Props> = ({ lang }) => {
       <h2>daily</h2>
       {JSON.stringify(state)}
       <ul>
-        {daily.map((d) => (
-          <li>
-            <input
-              type="checkbox"
-              id={d.key}
-              onChange={handleChangeCheckbox}
-              value={d.key}
-            />
-            <label htmlFor={d.key}>
-              {d.value}({state[d.key]})
-            </label>
-            <span>{d.logic}</span>
-          </li>
-        ))}
+        {daily.map((d) => {
+          const time = state[d.key];
+          return (
+            <li>
+              <input
+                type="checkbox"
+                id={d.key}
+                onChange={handleChangeCheckbox}
+                value={d.key}
+              />
+              <label htmlFor={d.key}>
+                {d.value}({time && <Time time={time} />})
+              </label>
+              <span>{d.logic}</span>
+            </li>
+          );
+        })}
       </ul>
       <h2>weekly</h2>
       <ul>
-        {weekly.map((d) => (
-          <li>
-            <input
-              type="checkbox"
-              id={d.key}
-              onChange={handleChangeCheckbox}
-              value={d.key}
-            />
-            <label htmlFor={d.key}>
-              {d.value}({state[d.key]})
-            </label>
-            <span>{d.logic}</span>
-          </li>
-        ))}
+        {weekly.map((d) => {
+          const time = state[d.key];
+          return (
+            <li>
+              <input
+                type="checkbox"
+                id={d.key}
+                onChange={handleChangeCheckbox}
+                value={d.key}
+              />
+              <label htmlFor={d.key}>
+                {d.value}({time && <Time time={time} />})
+              </label>
+              <span>{d.logic}</span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
