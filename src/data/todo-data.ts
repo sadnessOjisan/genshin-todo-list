@@ -1,4 +1,4 @@
-import { Lang } from "../type/lang";
+import { type Lang } from "../type/lang";
 
 type Cateogory = "daily_mission";
 export type TODO_KEY = "mission1" | "mission2" | "mission3" | "mission4";
@@ -29,6 +29,7 @@ interface TODO_VALUE {
  * @returns boolean TODOをリセットすべきなら true そうでないなら false
  */
 const dailyLogic = (lastUpdated: Date) => {
+  console.log(lastUpdated);
   return false;
 };
 

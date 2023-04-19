@@ -1,7 +1,7 @@
 "use client";
 
-import { ChangeEvent, FC, useEffect, useMemo, useState } from "react";
-import { TODO_DATA, TODO_KEY } from "../data/todo-data";
+import { type ChangeEvent, type FC, useEffect, useMemo, useState } from "react";
+import { TODO_DATA, type TODO_KEY } from "../data/todo-data";
 import type { Lang } from "../type/lang";
 import { strictEntries } from "../util/object";
 

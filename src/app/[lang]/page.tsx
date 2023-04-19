@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { type FC } from "react";
 import { Todos } from "../../client/todos";
-import { Lang } from "../../type/lang";
+import { type Lang } from "../../type/lang";
 
 interface RoutePath {
   lang: Lang;
