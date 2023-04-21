@@ -95,15 +95,15 @@ export const Todos: FC<Props> = ({ lang }) => {
   };
 
   const daily = useMemo(() => {
-    return getTodoByCategoryKey("daily_mission", state, lang);
+    return getTodoByCategoryKey("DAILY", state, lang);
   }, [lang, state]);
 
   const weekly = useMemo(() => {
-    return getTodoByCategoryKey("weekly_mission", state, lang);
+    return getTodoByCategoryKey("WEEKLY", state, lang);
   }, [lang, state]);
 
   const specialities = useMemo(() => {
-    return getTodoByCategoryKey("local_specialties", state, lang);
+    return getTodoByCategoryKey("LOCAL_SPECIALITIES", state, lang);
   }, [lang, state]);
 
   const cristalChunks = useMemo(() => {

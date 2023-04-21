@@ -51,9 +51,9 @@ export const TODO_KEYS = allElements<TODO_KEY>()([
 ]);
 
 export type CATEGORY_KEY =
-  | "daily_mission"
-  | "weekly_mission"
-  | "local_specialties" // 特産品
+  | "DAILY"
+  | "WEEKLY"
+  | "LOCAL_SPECIALITIES" // 特産品
   | "CRYSTAL_CHUNK"; // 水晶の塊
 
 interface Logic {
@@ -153,7 +153,7 @@ const translateByLangAndKey = (lang: Lang, categoryKey: VocabularyKey) => {
 };
 
 export const dailyMissionLogic: Cateogory = {
-  key: "daily_mission" as const,
+  key: "DAILY",
   name: (lang: Lang): string =>
     translateByLangAndKey(lang, "DAILY_CATEGORY_NAME"),
   logic: {
@@ -164,7 +164,7 @@ export const dailyMissionLogic: Cateogory = {
 };
 
 const weeklyMissionLogic: Cateogory = {
-  key: "weekly_mission" as const,
+  key: "WEEKLY",
   name: (lang: Lang): string =>
     translateByLangAndKey(lang, "WEEKLY_CATEGORY_NAME"),
   logic: {
@@ -175,7 +175,7 @@ const weeklyMissionLogic: Cateogory = {
 };
 
 const localSpecialitiesLogic: Cateogory = {
-  key: "local_specialties" as const,
+  key: "LOCAL_SPECIALITIES",
   name: (lang: Lang): string =>
     translateByLangAndKey(lang, "LOCAL_SPECIALITIES_CATEGORY_NAME"),
   logic: {
@@ -197,9 +197,9 @@ const cristalChunkLogic: Cateogory = {
 };
 
 export const categories: { [x in CATEGORY_KEY]: Cateogory } = {
-  daily_mission: dailyMissionLogic,
-  weekly_mission: weeklyMissionLogic,
-  local_specialties: localSpecialitiesLogic,
+  DAILY: dailyMissionLogic,
+  WEEKLY: weeklyMissionLogic,
+  LOCAL_SPECIALITIES: localSpecialitiesLogic,
   CRYSTAL_CHUNK: cristalChunkLogic,
 };
 
@@ -208,84 +208,84 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
    * １つ目のデイリーミッション
    */
   DAILY_MISSION_1: {
-    category: categories.daily_mission,
-    name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_1_NAME"),
+    category: categories.DAILY,
+    name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_1"),
   },
   /**
    * ２つ目のデイリーミッション
    */
   DAILY_MISSION_2: {
-    category: categories.daily_mission,
-    name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_2_NAME"),
+    category: categories.DAILY,
+    name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_2"),
   },
   /**
    * 3つ目のデイリーミッション
    */
   DAILY_MISSION_3: {
-    category: categories.daily_mission,
-    name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_3_NAME"),
+    category: categories.DAILY,
+    name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_3"),
   },
   /**
    * 4つ目のデイリーミッション
    */
   DAILY_MISSION_4: {
-    category: categories.daily_mission,
-    name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_4_NAME"),
+    category: categories.DAILY,
+    name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_4"),
   },
   WEEKLY_BOSS_1: {
-    category: categories.weekly_mission,
-    name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_1_NAME"),
+    category: categories.WEEKLY,
+    name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_1"),
   },
   WEEKLY_BOSS_2: {
-    category: categories.weekly_mission,
-    name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_2_NAME"),
+    category: categories.WEEKLY,
+    name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_2"),
   },
   WEEKLY_BOSS_3: {
-    category: categories.weekly_mission,
-    name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_3_NAME"),
+    category: categories.WEEKLY,
+    name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_3"),
   },
   ARTIFACT_MARATHON_1: {
-    category: categories.daily_mission,
+    category: categories.DAILY,
     name: (lang) => translateByLangAndKey(lang, "ARTIFACT_MARATHON_1"),
   },
   ARTIFACT_MARATHON_2: {
-    category: categories.daily_mission,
+    category: categories.DAILY,
     name: (lang) => translateByLangAndKey(lang, "ARTIFACT_MARATHON_2"),
   },
   ARTIFACT_MARATHON_3: {
-    category: categories.daily_mission,
+    category: categories.DAILY,
     name: (lang) => translateByLangAndKey(lang, "ARTIFACT_MARATHON_3"),
   },
   SILK_FLOWER: {
-    category: categories.local_specialties,
+    category: categories.LOCAL_SPECIALITIES,
     name: (lang) => translateByLangAndKey(lang, "SILK_FLOWER"),
   },
   DENDROBIUM: {
-    category: categories.local_specialties,
+    category: categories.LOCAL_SPECIALITIES,
     name: (lang) => translateByLangAndKey(lang, "DENDROBIUM"),
   },
   COR_LAPIS: {
-    category: categories.local_specialties,
+    category: categories.LOCAL_SPECIALITIES,
     name: (lang) => translateByLangAndKey(lang, "COR_LAPIS"),
   },
   FLUORESCENT_FUNGUS: {
-    category: categories.local_specialties,
+    category: categories.LOCAL_SPECIALITIES,
     name: (lang) => translateByLangAndKey(lang, "FLUORESCENT_FUNGUS"),
   },
   MOURNING_FLOWER: {
-    category: categories.local_specialties,
+    category: categories.LOCAL_SPECIALITIES,
     name: (lang) => translateByLangAndKey(lang, "MOURNING_FLOWER"),
   },
   TRISHIRAITE: {
-    category: categories.local_specialties,
+    category: categories.LOCAL_SPECIALITIES,
     name: (lang) => translateByLangAndKey(lang, "TRISHIRAITE"),
   },
   CALLA_LILY: {
-    category: categories.local_specialties,
+    category: categories.LOCAL_SPECIALITIES,
     name: (lang) => translateByLangAndKey(lang, "CALLA_LILY"),
   },
   CECILIA: {
-    category: categories.local_specialties,
+    category: categories.LOCAL_SPECIALITIES,
     name: (lang) => translateByLangAndKey(lang, "CECILIA"),
   },
   CRYSTAL_CHUNK_1: {

@@ -4,35 +4,9 @@ import { CATEGORY_KEY, type TODO_KEY } from "./todo-data";
 export type VocabularyKey =
   | "PAGE_TITLE"
   | "PAGE_DESCRIPTION"
-  | "DAILY_CATEGORY_NAME"
-  | "DAILY_CATEGORY_DESCRIPTION"
-  | "WEEKLY_CATEGORY_NAME"
-  | "WEEKLY_CATEGORY_DESCRIPTION"
-  | `${Extract<TODO_KEY, "DAILY_MISSION_1">}_NAME`
-  | `${Extract<TODO_KEY, "DAILY_MISSION_2">}_NAME`
-  | `${Extract<TODO_KEY, "DAILY_MISSION_3">}_NAME`
-  | `${Extract<TODO_KEY, "DAILY_MISSION_4">}_NAME`
-  | `${Extract<TODO_KEY, "WEEKLY_BOSS_1">}_NAME`
-  | `${Extract<TODO_KEY, "WEEKLY_BOSS_2">}_NAME`
-  | `${Extract<TODO_KEY, "WEEKLY_BOSS_3">}_NAME`
-  | `${Extract<CATEGORY_KEY, "CRYSTAL_CHUNK">}_CATEGORY_NAME`
-  | `${Extract<CATEGORY_KEY, "CRYSTAL_CHUNK">}_CATEGORY_DESCRIPTION`
-  | "ARTIFACT_MARATHON_1"
-  | "ARTIFACT_MARATHON_2"
-  | "ARTIFACT_MARATHON_3"
-  | "LOCAL_SPECIALITIES_CATEGORY_NAME"
-  | "LOCAL_SPECIALITIES_CATEGORY_DESCRIPTION"
-  | "SILK_FLOWER"
-  | "COR_LAPIS"
-  | "DENDROBIUM"
-  | "FLUORESCENT_FUNGUS"
-  | "MOURNING_FLOWER"
-  | "TRISHIRAITE"
-  | "CALLA_LILY"
-  | "CECILIA"
-  | "CRYSTAL_CHUNK_1"
-  | "CRYSTAL_CHUNK_2"
-  | "CRYSTAL_CHUNK_3";
+  | `${CATEGORY_KEY}_CATEGORY_NAME`
+  | `${CATEGORY_KEY}_CATEGORY_DESCRIPTION`
+  | `${TODO_KEY}`;
 
 type Vocabulary = { [x in VocabularyKey]: string };
 
@@ -56,13 +30,13 @@ export const jaVocaburary: Required<Vocabulary> = {
   CRYSTAL_CHUNK_CATEGORY_NAME: "水晶の塊",
   CRYSTAL_CHUNK_CATEGORY_DESCRIPTION:
     "72時間でリポップします。マラソンコースを３つ作っておいて毎日回るのが良いでしょう。",
-  DAILY_MISSION_1_NAME: "デイリーミッション１",
-  DAILY_MISSION_2_NAME: "デイリーミッション２",
-  DAILY_MISSION_3_NAME: "デイリーミッション３",
-  DAILY_MISSION_4_NAME: "デイリーミッション４",
-  WEEKLY_BOSS_1_NAME: "週時ボス(1)",
-  WEEKLY_BOSS_2_NAME: "週時ボス(2)",
-  WEEKLY_BOSS_3_NAME: "週時ボス(3)",
+  DAILY_MISSION_1: "デイリーミッション１",
+  DAILY_MISSION_2: "デイリーミッション２",
+  DAILY_MISSION_3: "デイリーミッション３",
+  DAILY_MISSION_4: "デイリーミッション４",
+  WEEKLY_BOSS_1: "週時ボス(1)",
+  WEEKLY_BOSS_2: "週時ボス(2)",
+  WEEKLY_BOSS_3: "週時ボス(3)",
   ARTIFACT_MARATHON_1: "聖遺物マラソン１",
   ARTIFACT_MARATHON_2: "聖遺物マラソン２",
   ARTIFACT_MARATHON_3: "聖遺物マラソン３",
