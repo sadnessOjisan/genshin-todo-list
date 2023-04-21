@@ -57,7 +57,6 @@ type Cateogory = {
 };
 
 interface TODO_VALUE {
-  description: string;
   name: (lang: Lang) => string;
   category: Cateogory;
 }
@@ -171,7 +170,6 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
    * １つ目のデイリーミッション
    */
   mission1: {
-    description: "daily mission(1)",
     category: categories.daily_mission,
     name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_1_NAME"),
   },
@@ -179,7 +177,6 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
    * ２つ目のデイリーミッション
    */
   mission2: {
-    description: "daily mission(2)",
     category: categories.daily_mission,
     name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_2_NAME"),
   },
@@ -187,7 +184,6 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
    * 3つ目のデイリーミッション
    */
   mission3: {
-    description: "daily mission(2)",
     category: categories.daily_mission,
     name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_3_NAME"),
   },
@@ -195,52 +191,42 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
    * 4つ目のデイリーミッション
    */
   mission4: {
-    description: "daily mission(4)",
     category: categories.daily_mission,
     name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_4_NAME"),
   },
   weekly_boss1: {
-    description: "weekly boss (1)",
     category: categories.weekly_mission,
     name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_1_NAME"),
   },
   weekly_boss2: {
-    description: "weekly boss (2)",
     category: categories.weekly_mission,
     name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_2_NAME"),
   },
   weekly_boss3: {
-    description: "weekly boss (3)",
     category: categories.weekly_mission,
     name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_3_NAME"),
   },
   silk_flower: {
-    description: "silk flower",
     category: categories.local_specialties,
     name: (lang) => translateByLangAndKey(lang, "SILK_FLOWER"),
   },
   DENDROBIUM: {
-    description: "DENDROBIUM",
     category: categories.local_specialties,
     name: (lang) => translateByLangAndKey(lang, "DENDROBIUM"),
   },
   COR_LAPIS: {
-    description: "COR_LAPIS",
     category: categories.local_specialties,
     name: (lang) => translateByLangAndKey(lang, "COR_LAPIS"),
   },
   FLUORESCENT_FUNGUS: {
-    description: "FLUORESCENT_FUNGUS",
     category: categories.local_specialties,
     name: (lang) => translateByLangAndKey(lang, "FLUORESCENT_FUNGUS"),
   },
   MOURNING_FLOWER: {
-    description: "MOURNING_FLOWER",
     category: categories.local_specialties,
     name: (lang) => translateByLangAndKey(lang, "MOURNING_FLOWER"),
   },
   TRISHIRAITE: {
-    description: "TRISHIRAITE",
     category: categories.local_specialties,
     name: (lang) => translateByLangAndKey(lang, "TRISHIRAITE"),
   },

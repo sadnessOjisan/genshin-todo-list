@@ -12,6 +12,7 @@ import {
   type ExpireDateState,
   getAllTodosExpireDates,
   updateAllTodosExpire,
+  createInitialState,
 } from "../service/check-expire";
 import type { Lang } from "../type/lang";
 import { isTodo } from "../util/assert";
@@ -67,21 +68,7 @@ const getTodoByCategoryKey = (
 };
 
 export const Todos: FC<Props> = ({ lang }) => {
-  const [state, setState] = useState<ExpireDateState>({
-    mission1: null,
-    mission2: null,
-    mission3: null,
-    mission4: null,
-    weekly_boss1: null,
-    weekly_boss2: null,
-    weekly_boss3: null,
-    silk_flower: null,
-    COR_LAPIS: null,
-    DENDROBIUM: null,
-    FLUORESCENT_FUNGUS: null,
-    MOURNING_FLOWER: null,
-    TRISHIRAITE: null,
-  });
+  const [state, setState] = useState<ExpireDateState>(createInitialState());
   useEffect(() => {
     const myStorage = new LocalStorabeWrapper(window.localStorage);
     const pastSavedState = getAllTodosExpireDates(myStorage);
