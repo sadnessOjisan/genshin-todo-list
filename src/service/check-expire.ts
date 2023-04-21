@@ -11,6 +11,9 @@ export const createInitialState = (): ExpireDateState => ({
   WEEKLY_BOSS_1: null,
   WEEKLY_BOSS_2: null,
   WEEKLY_BOSS_3: null,
+  ARTIFACT_MARATHON_1: null,
+  ARTIFACT_MARATHON_2: null,
+  ARTIFACT_MARATHON_3: null,
   SILK_FLOWER: null,
   COR_LAPIS: null,
   DENDROBIUM: null,
@@ -19,6 +22,9 @@ export const createInitialState = (): ExpireDateState => ({
   TRISHIRAITE: null,
   CALLA_LILY: null,
   CECILIA: null,
+  CRYSTAL_CHUNK_1: null,
+  CRYSTAL_CHUNK_2: null,
+  CRYSTAL_CHUNK_3: null,
 });
 
 export const getAllTodosExpireDates = (storage: LocalStorabeWrapper) => {

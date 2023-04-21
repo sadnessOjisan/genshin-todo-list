@@ -79,7 +79,6 @@ export const Todos: FC<Props> = ({ lang }) => {
   const handleChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
     const myStorage = new LocalStorabeWrapper(window.localStorage);
     const checked = e.target.checked;
-    console.log("checked", checked);
     const value = e.target.value;
     if (!isTodo(value)) {
       throw new Error("input value is not valid.");
@@ -107,12 +106,20 @@ export const Todos: FC<Props> = ({ lang }) => {
     return getTodoByCategoryKey("local_specialties", state, lang);
   }, [lang, state]);
 
+  const cristalChunks = useMemo(() => {
+    return getTodoByCategoryKey("CRYSTAL_CHUNK", state, lang);
+  }, [lang, state]);
+
   return (
     <div>
       <EachCategoryTodos todos={daily} handleOnChange={handleChangeCheckbox} />
       <EachCategoryTodos todos={weekly} handleOnChange={handleChangeCheckbox} />
       <EachCategoryTodos
         todos={specialities}
+        handleOnChange={handleChangeCheckbox}
+      />
+      <EachCategoryTodos
+        todos={cristalChunks}
         handleOnChange={handleChangeCheckbox}
       />
     </div>

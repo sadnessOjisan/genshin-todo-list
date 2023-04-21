@@ -11,6 +11,9 @@ export type TODO_KEY =
   | "WEEKLY_BOSS_1"
   | "WEEKLY_BOSS_2"
   | "WEEKLY_BOSS_3"
+  | "ARTIFACT_MARATHON_1"
+  | "ARTIFACT_MARATHON_2"
+  | "ARTIFACT_MARATHON_3"
   | "SILK_FLOWER"
   | "COR_LAPIS"
   | "DENDROBIUM"
@@ -18,7 +21,10 @@ export type TODO_KEY =
   | "MOURNING_FLOWER"
   | "TRISHIRAITE"
   | "CALLA_LILY"
-  | "CECILIA";
+  | "CECILIA"
+  | "CRYSTAL_CHUNK_1"
+  | "CRYSTAL_CHUNK_2"
+  | "CRYSTAL_CHUNK_3";
 
 export const TODO_KEYS = allElements<TODO_KEY>()([
   "DAILY_MISSION_1",
@@ -28,6 +34,9 @@ export const TODO_KEYS = allElements<TODO_KEY>()([
   "WEEKLY_BOSS_1",
   "WEEKLY_BOSS_2",
   "WEEKLY_BOSS_3",
+  "ARTIFACT_MARATHON_1",
+  "ARTIFACT_MARATHON_2",
+  "ARTIFACT_MARATHON_3",
   "SILK_FLOWER",
   "COR_LAPIS",
   "DENDROBIUM",
@@ -36,12 +45,16 @@ export const TODO_KEYS = allElements<TODO_KEY>()([
   "TRISHIRAITE",
   "CALLA_LILY",
   "CECILIA",
+  "CRYSTAL_CHUNK_1",
+  "CRYSTAL_CHUNK_2",
+  "CRYSTAL_CHUNK_3",
 ]);
 
 export type CATEGORY_KEY =
   | "daily_mission"
   | "weekly_mission"
-  | "local_specialties"; // 特産品
+  | "local_specialties" // 特産品
+  | "CRYSTAL_CHUNK"; // 水晶の塊
 
 interface Logic {
   descriptipon: (lang: Lang) => string;
@@ -116,8 +129,17 @@ export class FreeCheckLogic {
     return now > repopDate;
   }
 
+  private static passed72H(lastUpdated: Date, now: Date) {
+    const repopDate = add(lastUpdated, { hours: 72 });
+    return now > repopDate;
+  }
+
   static canFreeSpecialities(lastUpdated: Date, now: Date) {
     return FreeCheckLogic.passed48H(lastUpdated, now);
+  }
+
+  static canFreeCrystalChunk(lastUpdated: Date, now: Date) {
+    return FreeCheckLogic.passed72H(lastUpdated, now);
   }
 }
 
@@ -130,7 +152,7 @@ const translateByLangAndKey = (lang: Lang, categoryKey: VocabularyKey) => {
   return vocav;
 };
 
-export const dailyMissionLogic = {
+export const dailyMissionLogic: Cateogory = {
   key: "daily_mission" as const,
   name: (lang: Lang): string =>
     translateByLangAndKey(lang, "DAILY_CATEGORY_NAME"),
@@ -141,7 +163,7 @@ export const dailyMissionLogic = {
   },
 };
 
-const weeklyMissionLogic = {
+const weeklyMissionLogic: Cateogory = {
   key: "weekly_mission" as const,
   name: (lang: Lang): string =>
     translateByLangAndKey(lang, "WEEKLY_CATEGORY_NAME"),
@@ -152,7 +174,7 @@ const weeklyMissionLogic = {
   },
 };
 
-const localSpecialitiesLogic = {
+const localSpecialitiesLogic: Cateogory = {
   key: "local_specialties" as const,
   name: (lang: Lang): string =>
     translateByLangAndKey(lang, "LOCAL_SPECIALITIES_CATEGORY_NAME"),
@@ -163,10 +185,22 @@ const localSpecialitiesLogic = {
   },
 };
 
+const cristalChunkLogic: Cateogory = {
+  key: "CRYSTAL_CHUNK",
+  name: (lang: Lang): string =>
+    translateByLangAndKey(lang, "CRYSTAL_CHUNK_CATEGORY_NAME"),
+  logic: {
+    descriptipon: (lang: Lang): string =>
+      translateByLangAndKey(lang, "CRYSTAL_CHUNK_CATEGORY_DESCRIPTION"),
+    func: FreeCheckLogic.canFreeCrystalChunk,
+  },
+};
+
 export const categories: { [x in CATEGORY_KEY]: Cateogory } = {
   daily_mission: dailyMissionLogic,
   weekly_mission: weeklyMissionLogic,
   local_specialties: localSpecialitiesLogic,
+  CRYSTAL_CHUNK: cristalChunkLogic,
 };
 
 export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
@@ -210,6 +244,18 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
     category: categories.weekly_mission,
     name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_3_NAME"),
   },
+  ARTIFACT_MARATHON_1: {
+    category: categories.daily_mission,
+    name: (lang) => translateByLangAndKey(lang, "ARTIFACT_MARATHON_1"),
+  },
+  ARTIFACT_MARATHON_2: {
+    category: categories.daily_mission,
+    name: (lang) => translateByLangAndKey(lang, "ARTIFACT_MARATHON_2"),
+  },
+  ARTIFACT_MARATHON_3: {
+    category: categories.daily_mission,
+    name: (lang) => translateByLangAndKey(lang, "ARTIFACT_MARATHON_3"),
+  },
   SILK_FLOWER: {
     category: categories.local_specialties,
     name: (lang) => translateByLangAndKey(lang, "SILK_FLOWER"),
@@ -241,5 +287,17 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
   CECILIA: {
     category: categories.local_specialties,
     name: (lang) => translateByLangAndKey(lang, "CECILIA"),
+  },
+  CRYSTAL_CHUNK_1: {
+    category: categories.CRYSTAL_CHUNK,
+    name: (lang) => translateByLangAndKey(lang, "CRYSTAL_CHUNK_1"),
+  },
+  CRYSTAL_CHUNK_2: {
+    category: categories.CRYSTAL_CHUNK,
+    name: (lang) => translateByLangAndKey(lang, "CRYSTAL_CHUNK_2"),
+  },
+  CRYSTAL_CHUNK_3: {
+    category: categories.CRYSTAL_CHUNK,
+    name: (lang) => translateByLangAndKey(lang, "CRYSTAL_CHUNK_3"),
   },
 };
