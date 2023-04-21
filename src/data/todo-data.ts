@@ -95,6 +95,9 @@ export class FreeCheckLogic {
 }
 
 const translateByLangAndKey = (lang: Lang, categoryKey: VocabularyKey) => {
+  console.log("lang:", lang);
+  console.log("VOCABULARY[lang]:", VOCABULARY[lang]);
+
   const vocav = VOCABULARY[lang][categoryKey];
   if (!vocav) {
     console.warn(`lang: ${lang} の ${categoryKey} がありません。`);

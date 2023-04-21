@@ -12,9 +12,13 @@ type Props = {
 
 const Page: FC<Props> = (props) => {
   return (
-    <div>
-      <Todos lang={props.params.lang} />
-    </div>
+    <html lang={props.params.lang}>
+      <body>
+        <div>
+          <Todos lang={props.params.lang} />
+        </div>
+      </body>
+    </html>
   );
 };
 

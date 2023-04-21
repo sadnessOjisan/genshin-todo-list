@@ -1,4 +1,3 @@
-import { LangSelect } from "../client/lang-select";
 import { DEFAULT_LANG } from "../const/lang";
 import { VOCABULARY } from "../data/i18n";
 
@@ -12,13 +11,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html lang={DEFAULT_LANG}>
-      <body>
-        <LangSelect default={DEFAULT_LANG} />
-        <h1>{VOCABULARY[DEFAULT_LANG].PAGE_TITLE}</h1>
-        {children}
-      </body>
-    </html>
-  );
+  return <>{children}</>;
 }
