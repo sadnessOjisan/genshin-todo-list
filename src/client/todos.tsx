@@ -1,7 +1,7 @@
 "use client";
 
 import { type ChangeEvent, type FC, useEffect, useMemo, useState } from "react";
-import { TODO_DATA, type TODO_KEY } from "../data/todo-data";
+import { type CATEGORY_KEY, TODO_DATA, type TODO_KEY } from "../data/todo-data";
 import { LocalStorabeWrapper } from "../repository/local-storage";
 import type { Lang } from "../type/lang";
 import { isTodo } from "../util/assert";
@@ -12,10 +12,51 @@ interface Props {
   lang: Lang;
 }
 
+type EachCategoryTodos = {
+  category: CATEGORY_KEY;
+  todos: ReadonlyArray<{
+    key: TODO_KEY;
+    value: string;
+    logic: string;
+    time: Date | null;
+    initialCheck: boolean;
+  }>;
+};
+
+const getTodoByCategoryKey = (
+  key: CATEGORY_KEY,
+  state: State,
+  lang: Lang
+): EachCategoryTodos => {
+  const todos = strictEntries(TODO_DATA)
+    .filter((v) => v[1].category.key === key)
+    .map((v) => {
+      const todoKey = v[0];
+      const todo = v[1];
+      const savedDate = state[todoKey];
+      const time = state[todoKey];
+      return {
+        key: todoKey,
+        value: todo.name(lang),
+        logic: todo.category.logic.descriptipon(lang),
+        time: time,
+        initialCheck: savedDate
+          ? todo.category.logic.func(savedDate, new Date())
+          : false,
+      };
+    });
+  return {
+    category: key,
+    todos,
+  };
+};
+
+type State = {
+  [x in TODO_KEY]: Date | null;
+};
+
 export const Todos: FC<Props> = ({ lang }) => {
-  const [state, setState] = useState<{
-    [x in TODO_KEY]: Date | null;
-  }>({
+  const [state, setState] = useState<State>({
     mission1: null,
     mission2: null,
     mission3: null,
@@ -64,91 +105,50 @@ export const Todos: FC<Props> = ({ lang }) => {
   };
 
   const daily = useMemo(() => {
-    return strictEntries(TODO_DATA)
-      .filter((v) => v[1].category === "daily_mission")
-      .map((v) => {
-        const todoKey = v[0];
-        const savedDate = state[todoKey];
-        return {
-          key: todoKey,
-          value: v[1].name(lang),
-          logic: v[1].logic.descriptipon(lang),
-          initialCheck: savedDate
-            ? v[1].logic.func(savedDate, new Date())
-            : false,
-        };
-      });
+    return getTodoByCategoryKey("daily_mission", state, lang);
   }, [lang, state]);
 
   const weekly = useMemo(() => {
-    return strictEntries(TODO_DATA)
-      .filter((v) => v[1].category === "weekly_mission")
-      .map((v) => {
-        const todoKey = v[0];
-        const savedDate = state[todoKey];
-        return {
-          key: v[0],
-          value: v[1].name(lang),
-          logic: v[1].logic.descriptipon(lang),
-          initialCheck: savedDate
-            ? v[1].logic.func(savedDate, new Date())
-            : false,
-        };
-      });
+    return getTodoByCategoryKey("weekly_mission", state, lang);
   }, [lang, state]);
 
   return (
     <div>
-      <h2>daily</h2>
-      <ul>
-        {daily.map((d) => {
-          const time = state[d.key];
-          return (
-            <li>
-              <div style={{ display: "flex" }}>
-                <input
-                  type="checkbox"
-                  id={d.key}
-                  onChange={handleChangeCheckbox}
-                  value={d.key}
-                  defaultChecked={d.initialCheck}
-                />
-                <label htmlFor={d.key}>
-                  <p>
-                    {d.value}(at {time && <Time time={time} />})
-                  </p>
-                  <p>{d.logic}</p>
-                </label>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-      <h2>weekly</h2>
-      <ul>
-        {weekly.map((d) => {
-          const time = state[d.key];
-          return (
-            <li>
-              <div style={{ display: "flex" }}>
-                <input
-                  type="checkbox"
-                  id={d.key}
-                  onChange={handleChangeCheckbox}
-                  value={d.key}
-                  defaultChecked={d.initialCheck}
-                />
-                <label htmlFor={d.key}>
-                  <p>
-                    {d.value}(at {time && <Time time={time} />})
-                  </p>
-                  <p>{d.logic}</p>
-                </label>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+      <EachCategoryTodos todos={daily} handleOnChange={handleChangeCheckbox} />
+      <EachCategoryTodos todos={weekly} handleOnChange={handleChangeCheckbox} />
     </div>
   );
 };
+
+const EachCategoryTodos: FC<{
+  todos: EachCategoryTodos;
+  handleOnChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}> = ({ todos, handleOnChange }) => (
+  <div>
+    <h2>{todos.category}</h2>
+    <ul>
+      {todos.todos.map((d) => {
+        const { time } = d;
+        return (
+          <li>
+            <div style={{ display: "flex" }}>
+              <input
+                type="checkbox"
+                id={d.key}
+                onChange={handleOnChange}
+                value={d.key}
+                defaultChecked={d.initialCheck}
+              />
+              <label htmlFor={d.key}>
+                <p>
+                  {d.value}(at {time && <Time time={time} />})
+                </p>
+                <p>{d.logic}</p>
+              </label>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+);

@@ -2,8 +2,6 @@ import { type Lang } from "../type/lang";
 import { allElements } from "../util/array";
 import { add, isMonday, nextMonday, set } from "../util/date";
 
-type Cateogory = "daily_mission" | "weekly_mission";
-
 export type TODO_KEY =
   | "mission1"
   | "mission2"
@@ -34,10 +32,15 @@ interface Logic {
   func: (lastUpdated: Date, now: Date) => boolean;
 }
 
+export type CATEGORY_KEY = "daily_mission" | "weekly_mission";
+
+type Cateogory = {
+  key: "daily_mission" | "weekly_mission";
+  logic: Logic;
+};
+
 interface TODO_VALUE {
   description: string;
-
-  logic: Logic;
   name: (lang: Lang) => string;
   category: Cateogory;
 }
@@ -89,26 +92,47 @@ export class FreeCheckLogic {
   }
 }
 
+const dailyMissionLogic = {
+  key: "daily_mission" as const,
+  logic: {
+    descriptipon: (lang: Lang) => {
+      switch (lang) {
+        case "ja":
+          return "TODO完了時点の次の AM5:00 に解除される。";
+        case "en":
+          return "next am 5:00";
+        default:
+          return "TODO完了時点の次の AM5:00 に解除される。";
+      }
+    },
+    func: FreeCheckLogic.canFreeDailyTodo,
+  },
+};
+
+const weeklyMissionLogic = {
+  key: "weekly_mission" as const,
+  logic: {
+    descriptipon: (lang: Lang) => {
+      switch (lang) {
+        case "ja":
+          return "毎週月曜日 AM5:00 に解除される。";
+        case "en":
+          return "reset at AM 5:00 on every monday";
+        default:
+          return "毎週月曜日 AM5:00 に解除される。";
+      }
+    },
+    func: FreeCheckLogic.canFreeDailyTodo,
+  },
+};
+
 export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
   /**
    * １つ目のデイリーミッション
    */
   mission1: {
     description: "daily mission(1)",
-    logic: {
-      descriptipon: (lang) => {
-        switch (lang) {
-          case "ja":
-            return "TODO完了時点の次の AM5:00 に解除される。";
-          case "en":
-            return "next am 5:00";
-          default:
-            return "TODO完了時点の次の AM5:00 に解除される。";
-        }
-      },
-      func: FreeCheckLogic.canFreeDailyTodo,
-    },
-    category: "daily_mission",
+    category: dailyMissionLogic,
     name: (lang) => {
       switch (lang) {
         case "ja":
@@ -125,20 +149,7 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
    */
   mission2: {
     description: "daily mission(2)",
-    logic: {
-      descriptipon: (lang) => {
-        switch (lang) {
-          case "ja":
-            return "TODO完了時点の次の AM5:00 に解除される。";
-          case "en":
-            return "next am 5:00";
-          default:
-            return "TODO完了時点の次の AM5:00 に解除される。";
-        }
-      },
-      func: FreeCheckLogic.canFreeDailyTodo,
-    },
-    category: "daily_mission",
+    category: dailyMissionLogic,
     name: (lang) => {
       switch (lang) {
         case "ja":
@@ -155,20 +166,7 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
    */
   mission3: {
     description: "daily mission(2)",
-    logic: {
-      descriptipon: (lang) => {
-        switch (lang) {
-          case "ja":
-            return "TODO完了時点の次の AM5:00 に解除される。";
-          case "en":
-            return "next am 5:00";
-          default:
-            return "TODO完了時点の次の AM5:00 に解除される。";
-        }
-      },
-      func: FreeCheckLogic.canFreeDailyTodo,
-    },
-    category: "daily_mission",
+    category: dailyMissionLogic,
     name: (lang) => {
       switch (lang) {
         case "ja":
@@ -185,20 +183,7 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
    */
   mission4: {
     description: "daily mission(4)",
-    logic: {
-      descriptipon: (lang) => {
-        switch (lang) {
-          case "ja":
-            return "TODO完了時点の次の AM5:00 に解除される。";
-          case "en":
-            return "next am 5:00";
-          default:
-            return "TODO完了時点の次の AM5:00 に解除される。";
-        }
-      },
-      func: FreeCheckLogic.canFreeDailyTodo,
-    },
-    category: "daily_mission",
+    category: dailyMissionLogic,
     name: (lang) => {
       switch (lang) {
         case "ja":
@@ -212,20 +197,7 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
   },
   weekly_boss1: {
     description: "weekly boss (1)",
-    logic: {
-      descriptipon: (lang) => {
-        switch (lang) {
-          case "ja":
-            return "毎週月曜日 AM5:00 に解除される。";
-          case "en":
-            return "reset at AM 5:00 on every monday";
-          default:
-            return "毎週月曜日 AM5:00 に解除される。";
-        }
-      },
-      func: FreeCheckLogic.canFreeWeeklyTodo,
-    },
-    category: "weekly_mission",
+    category: weeklyMissionLogic,
     name: (lang) => {
       switch (lang) {
         case "ja":
@@ -239,20 +211,7 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
   },
   weekly_boss2: {
     description: "weekly boss (2)",
-    logic: {
-      descriptipon: (lang) => {
-        switch (lang) {
-          case "ja":
-            return "毎週月曜日 AM5:00 に解除される。";
-          case "en":
-            return "reset at AM 5:00 on every monday";
-          default:
-            return "毎週月曜日 AM5:00 に解除される。";
-        }
-      },
-      func: FreeCheckLogic.canFreeWeeklyTodo,
-    },
-    category: "weekly_mission",
+    category: weeklyMissionLogic,
     name: (lang) => {
       switch (lang) {
         case "ja":
@@ -266,20 +225,7 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
   },
   weekly_boss3: {
     description: "weekly boss (3)",
-    logic: {
-      descriptipon: (lang) => {
-        switch (lang) {
-          case "ja":
-            return "毎週月曜日 AM5:00 に解除される。";
-          case "en":
-            return "reset at AM 5:00 on every monday";
-          default:
-            return "毎週月曜日 AM5:00 に解除される。";
-        }
-      },
-      func: FreeCheckLogic.canFreeWeeklyTodo,
-    },
-    category: "weekly_mission",
+    category: weeklyMissionLogic,
     name: (lang) => {
       switch (lang) {
         case "ja":
