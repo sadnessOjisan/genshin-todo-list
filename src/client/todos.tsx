@@ -73,21 +73,7 @@ export const Todos: FC<Props> = ({ lang }) => {
     const myStorage = new LocalStorabeWrapper(window.localStorage);
     const pastSavedState = getAllTodosExpireDates(myStorage);
     const updatedState = updateAllTodosExpire(pastSavedState, myStorage);
-    setState({
-      mission1: updatedState["mission1"],
-      mission2: updatedState["mission2"],
-      mission3: updatedState["mission3"],
-      mission4: updatedState["mission4"],
-      weekly_boss1: updatedState["weekly_boss1"],
-      weekly_boss2: updatedState["weekly_boss2"],
-      weekly_boss3: updatedState["weekly_boss3"],
-      silk_flower: updatedState["silk_flower"],
-      COR_LAPIS: updatedState["COR_LAPIS"],
-      DENDROBIUM: updatedState["DENDROBIUM"],
-      FLUORESCENT_FUNGUS: updatedState["FLUORESCENT_FUNGUS"],
-      MOURNING_FLOWER: updatedState["MOURNING_FLOWER"],
-      TRISHIRAITE: updatedState["TRISHIRAITE"],
-    });
+    setState(updatedState);
   }, []);
 
   const handleChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {

@@ -16,7 +16,9 @@ export type TODO_KEY =
   | "DENDROBIUM"
   | "FLUORESCENT_FUNGUS"
   | "MOURNING_FLOWER"
-  | "TRISHIRAITE";
+  | "TRISHIRAITE"
+  | "CALLA_LILY"
+  | "CECILIA";
 
 export const TODO_KEYS = allElements<TODO_KEY>()([
   "DAILY_MISSION_1",
@@ -32,6 +34,8 @@ export const TODO_KEYS = allElements<TODO_KEY>()([
   "FLUORESCENT_FUNGUS",
   "MOURNING_FLOWER",
   "TRISHIRAITE",
+  "CALLA_LILY",
+  "CECILIA",
 ]);
 
 export type CATEGORY_KEY =
@@ -229,5 +233,13 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
   TRISHIRAITE: {
     category: categories.local_specialties,
     name: (lang) => translateByLangAndKey(lang, "TRISHIRAITE"),
+  },
+  CALLA_LILY: {
+    category: categories.local_specialties,
+    name: (lang) => translateByLangAndKey(lang, "CALLA_LILY"),
+  },
+  CECILIA: {
+    category: categories.local_specialties,
+    name: (lang) => translateByLangAndKey(lang, "CECILIA"),
   },
 };

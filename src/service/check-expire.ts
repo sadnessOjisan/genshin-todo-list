@@ -4,19 +4,21 @@ import { LocalStorabeWrapper } from "../repository/local-storage";
 export type ExpireDateState = { [x in TODO_KEY]: Date | null };
 
 export const createInitialState = (): ExpireDateState => ({
-  mission1: null,
-  mission2: null,
-  mission3: null,
-  mission4: null,
-  weekly_boss1: null,
-  weekly_boss2: null,
-  weekly_boss3: null,
-  silk_flower: null,
+  DAILY_MISSION_1: null,
+  DAILY_MISSION_2: null,
+  DAILY_MISSION_3: null,
+  DAILY_MISSION_4: null,
+  WEEKLY_BOSS_1: null,
+  WEEKLY_BOSS_2: null,
+  WEEKLY_BOSS_3: null,
+  SILK_FLOWER: null,
   COR_LAPIS: null,
   DENDROBIUM: null,
   FLUORESCENT_FUNGUS: null,
   MOURNING_FLOWER: null,
   TRISHIRAITE: null,
+  CALLA_LILY: null,
+  CECILIA: null,
 });
 
 export const getAllTodosExpireDates = (storage: LocalStorabeWrapper) => {

@@ -1,5 +1,5 @@
 import type { Lang } from "../type/lang";
-import { TODO_KEY } from "./todo-data";
+import { type TODO_KEY } from "./todo-data";
 
 export type VocabularyKey =
   | "PAGE_TITLE"
@@ -22,7 +22,9 @@ export type VocabularyKey =
   | "DENDROBIUM"
   | "FLUORESCENT_FUNGUS"
   | "MOURNING_FLOWER"
-  | "TRISHIRAITE";
+  | "TRISHIRAITE"
+  | "CALLA_LILY"
+  | "CECILIA";
 
 type Vocabulary = { [x in VocabularyKey]: string };
 
@@ -56,6 +58,8 @@ export const jaVocaburary: Required<Vocabulary> = {
   FLUORESCENT_FUNGUS: "ユウトウタケ",
   MOURNING_FLOWER: "悼霊花",
   TRISHIRAITE: "サングイト",
+  CALLA_LILY: "ドドリアン",
+  CECILIA: "セシリアの花",
 };
 
 export const enVocaburary: VocabularyByLang["en"] = {
