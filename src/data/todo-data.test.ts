@@ -56,4 +56,9 @@ describe("todo-data", () => {
       expect(actual).toBe(false);
     });
   });
+
+  describe("canFreeSpecialities", () => {
+    it.todo("48時間経過した");
+    it.todo("48時間経過していない");
+  });
 });

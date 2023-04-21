@@ -13,7 +13,10 @@ export type VocabularyKey =
   | "DAILY_MISSION_4_NAME"
   | "WEEKLY_BOSS_1_NAME"
   | "WEEKLY_BOSS_2_NAME"
-  | "WEEKLY_BOSS_3_NAME";
+  | "WEEKLY_BOSS_3_NAME"
+  | "LOCAL_SPECIALITIES_CATEGORY_NAME"
+  | "LOCAL_SPECIALITIES_CATEGORY_DESCRIPTION"
+  | "SILK_FLOWER";
 
 type Vocabulary = { [x in VocabularyKey]: string };
 
@@ -32,6 +35,8 @@ export const jaVocaburary: Required<Vocabulary> = {
   WEEKLY_CATEGORY_NAME: "ウィークリーTODO",
   WEEKLY_CATEGORY_DESCRIPTION:
     "TODO完了時点の次の月曜日の AM5:00 に解除される。",
+  LOCAL_SPECIALITIES_CATEGORY_NAME: "特産品",
+  LOCAL_SPECIALITIES_CATEGORY_DESCRIPTION: "取得 48時間後に解除される。",
   DAILY_MISSION_1_NAME: "デイリーミッション１",
   DAILY_MISSION_2_NAME: "デイリーミッション２",
   DAILY_MISSION_3_NAME: "デイリーミッション３",
@@ -39,6 +44,7 @@ export const jaVocaburary: Required<Vocabulary> = {
   WEEKLY_BOSS_1_NAME: "週時ボス(1)",
   WEEKLY_BOSS_2_NAME: "週時ボス(2)",
   WEEKLY_BOSS_3_NAME: "週時ボス(3)",
+  SILK_FLOWER: "霓裳花",
 };
 
 export const enVocaburary: VocabularyByLang["en"] = {

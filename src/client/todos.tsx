@@ -75,6 +75,7 @@ export const Todos: FC<Props> = ({ lang }) => {
     weekly_boss1: null,
     weekly_boss2: null,
     weekly_boss3: null,
+    silk_flower: null,
   });
   useEffect(() => {
     const myStorage = new LocalStorabeWrapper(window.localStorage);
@@ -88,6 +89,7 @@ export const Todos: FC<Props> = ({ lang }) => {
       weekly_boss1: updatedState["weekly_boss1"],
       weekly_boss2: updatedState["weekly_boss2"],
       weekly_boss3: updatedState["weekly_boss3"],
+      silk_flower: updatedState["silk_flower"],
     });
   }, []);
 
@@ -118,10 +120,18 @@ export const Todos: FC<Props> = ({ lang }) => {
     return getTodoByCategoryKey("weekly_mission", state, lang);
   }, [lang, state]);
 
+  const specialities = useMemo(() => {
+    return getTodoByCategoryKey("local_specialties", state, lang);
+  }, [lang, state]);
+
   return (
     <div>
       <EachCategoryTodos todos={daily} handleOnChange={handleChangeCheckbox} />
       <EachCategoryTodos todos={weekly} handleOnChange={handleChangeCheckbox} />
+      <EachCategoryTodos
+        todos={specialities}
+        handleOnChange={handleChangeCheckbox}
+      />
     </div>
   );
 };

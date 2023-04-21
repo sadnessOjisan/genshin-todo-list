@@ -12,6 +12,7 @@ export const getAllTodosExpireDates = (storage: LocalStorabeWrapper) => {
     weekly_boss1: null,
     weekly_boss2: null,
     weekly_boss3: null,
+    silk_flower: null,
   };
   TODO_KEYS.forEach((todoKey) => {
     map[todoKey] = storage.getSavedDate(todoKey);

@@ -10,7 +10,8 @@ export type TODO_KEY =
   | "mission4"
   | "weekly_boss1"
   | "weekly_boss2"
-  | "weekly_boss3";
+  | "weekly_boss3"
+  | "silk_flower";
 
 export const TODO_KEYS = allElements<TODO_KEY>()([
   "mission1",
@@ -20,7 +21,13 @@ export const TODO_KEYS = allElements<TODO_KEY>()([
   "weekly_boss1",
   "weekly_boss2",
   "weekly_boss3",
+  "silk_flower",
 ]);
+
+export type CATEGORY_KEY =
+  | "daily_mission"
+  | "weekly_mission"
+  | "local_specialties"; // 特産品
 
 interface Logic {
   descriptipon: (lang: Lang) => string;
@@ -32,8 +39,6 @@ interface Logic {
    */
   func: (lastUpdated: Date, now: Date) => boolean;
 }
-
-export type CATEGORY_KEY = "daily_mission" | "weekly_mission";
 
 type Cateogory = {
   key: CATEGORY_KEY;
@@ -92,12 +97,18 @@ export class FreeCheckLogic {
     }
     return now > dead;
   }
+
+  private static passed48H(lastUpdated: Date, now: Date) {
+    const repopDate = add(lastUpdated, { hours: 48 });
+    return now > repopDate;
+  }
+
+  static canFreeSpecialities(lastUpdated: Date, now: Date) {
+    return this.passed48H(lastUpdated, now);
+  }
 }
 
 const translateByLangAndKey = (lang: Lang, categoryKey: VocabularyKey) => {
-  console.log("lang:", lang);
-  console.log("VOCABULARY[lang]:", VOCABULARY[lang]);
-
   const vocav = VOCABULARY[lang][categoryKey];
   if (!vocav) {
     console.warn(`lang: ${lang} の ${categoryKey} がありません。`);
@@ -128,9 +139,21 @@ const weeklyMissionLogic = {
   },
 };
 
+const localSpecialitiesLogic = {
+  key: "local_specialties" as const,
+  name: (lang: Lang): string =>
+    translateByLangAndKey(lang, "LOCAL_SPECIALITIES_CATEGORY_NAME"),
+  logic: {
+    descriptipon: (lang: Lang): string =>
+      translateByLangAndKey(lang, "LOCAL_SPECIALITIES_CATEGORY_DESCRIPTION"),
+    func: FreeCheckLogic.canFreeSpecialities,
+  },
+};
+
 export const categories: { [x in CATEGORY_KEY]: Cateogory } = {
   daily_mission: dailyMissionLogic,
   weekly_mission: weeklyMissionLogic,
+  local_specialties: localSpecialitiesLogic,
 };
 
 export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
@@ -180,5 +203,10 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
     description: "weekly boss (3)",
     category: categories.weekly_mission,
     name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_3_NAME"),
+  },
+  silk_flower: {
+    description: "silk flower",
+    category: categories.local_specialties,
+    name: (lang) => translateByLangAndKey(lang, "SILK_FLOWER"),
   },
 };
