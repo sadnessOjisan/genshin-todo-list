@@ -170,7 +170,7 @@ const weeklyMissionLogic: Cateogory = {
   logic: {
     descriptipon: (lang: Lang): string =>
       translateByLangAndKey(lang, "WEEKLY_CATEGORY_DESCRIPTION"),
-    func: FreeCheckLogic.canFreeDailyTodo,
+    func: FreeCheckLogic.canFreeWeeklyTodo,
   },
 };
 
