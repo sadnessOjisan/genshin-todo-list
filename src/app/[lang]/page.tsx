@@ -1,4 +1,5 @@
 import { type FC } from "react";
+import { LangSelect } from "../../client/lang-select";
 import { Todos } from "../../client/todos";
 import { type Lang } from "../../type/lang";
 
@@ -15,7 +16,13 @@ const Page: FC<Props> = (props) => {
     <html lang={props.params.lang}>
       <body>
         <div>
+          <LangSelect default={props.params.lang} />
           <Todos lang={props.params.lang} />
+        </div>
+        <div>
+          <a href="https://github.com/sadnessOjisan/genshin-todo-list">
+            source
+          </a>
         </div>
       </body>
     </html>

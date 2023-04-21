@@ -13,6 +13,11 @@ const Page: FC = () => {
           <h1>{VOCABULARY[DEFAULT_LANG].PAGE_TITLE}</h1>
           <Todos lang="ja" />
         </div>
+        <div>
+          <a href="https://github.com/sadnessOjisan/genshin-todo-list">
+            source
+          </a>
+        </div>
       </body>
     </html>
   );
