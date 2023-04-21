@@ -16,7 +16,12 @@ export type VocabularyKey =
   | "WEEKLY_BOSS_3_NAME"
   | "LOCAL_SPECIALITIES_CATEGORY_NAME"
   | "LOCAL_SPECIALITIES_CATEGORY_DESCRIPTION"
-  | "SILK_FLOWER";
+  | "SILK_FLOWER"
+  | "COR_LAPIS"
+  | "DENDROBIUM"
+  | "FLUORESCENT_FUNGUS"
+  | "MOURNING_FLOWER"
+  | "TRISHIRAITE";
 
 type Vocabulary = { [x in VocabularyKey]: string };
 
@@ -45,6 +50,11 @@ export const jaVocaburary: Required<Vocabulary> = {
   WEEKLY_BOSS_2_NAME: "週時ボス(2)",
   WEEKLY_BOSS_3_NAME: "週時ボス(3)",
   SILK_FLOWER: "霓裳花",
+  COR_LAPIS: "石珀",
+  DENDROBIUM: "血石華",
+  FLUORESCENT_FUNGUS: "ユウトウタケ",
+  MOURNING_FLOWER: "悼霊花",
+  TRISHIRAITE: "サングイト",
 };
 
 export const enVocaburary: VocabularyByLang["en"] = {

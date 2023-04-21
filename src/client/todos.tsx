@@ -76,6 +76,11 @@ export const Todos: FC<Props> = ({ lang }) => {
     weekly_boss2: null,
     weekly_boss3: null,
     silk_flower: null,
+    COR_LAPIS: null,
+    DENDROBIUM: null,
+    FLUORESCENT_FUNGUS: null,
+    MOURNING_FLOWER: null,
+    TRISHIRAITE: null,
   });
   useEffect(() => {
     const myStorage = new LocalStorabeWrapper(window.localStorage);
@@ -90,6 +95,11 @@ export const Todos: FC<Props> = ({ lang }) => {
       weekly_boss2: updatedState["weekly_boss2"],
       weekly_boss3: updatedState["weekly_boss3"],
       silk_flower: updatedState["silk_flower"],
+      COR_LAPIS: updatedState["COR_LAPIS"],
+      DENDROBIUM: updatedState["DENDROBIUM"],
+      FLUORESCENT_FUNGUS: updatedState["FLUORESCENT_FUNGUS"],
+      MOURNING_FLOWER: updatedState["MOURNING_FLOWER"],
+      TRISHIRAITE: updatedState["TRISHIRAITE"],
     });
   }, []);
 

@@ -11,7 +11,12 @@ export type TODO_KEY =
   | "weekly_boss1"
   | "weekly_boss2"
   | "weekly_boss3"
-  | "silk_flower";
+  | "silk_flower"
+  | "COR_LAPIS"
+  | "DENDROBIUM"
+  | "FLUORESCENT_FUNGUS"
+  | "MOURNING_FLOWER"
+  | "TRISHIRAITE";
 
 export const TODO_KEYS = allElements<TODO_KEY>()([
   "mission1",
@@ -22,6 +27,11 @@ export const TODO_KEYS = allElements<TODO_KEY>()([
   "weekly_boss2",
   "weekly_boss3",
   "silk_flower",
+  "COR_LAPIS",
+  "DENDROBIUM",
+  "FLUORESCENT_FUNGUS",
+  "MOURNING_FLOWER",
+  "TRISHIRAITE",
 ]);
 
 export type CATEGORY_KEY =
@@ -104,7 +114,7 @@ export class FreeCheckLogic {
   }
 
   static canFreeSpecialities(lastUpdated: Date, now: Date) {
-    return this.passed48H(lastUpdated, now);
+    return FreeCheckLogic.passed48H(lastUpdated, now);
   }
 }
 
@@ -208,5 +218,30 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
     description: "silk flower",
     category: categories.local_specialties,
     name: (lang) => translateByLangAndKey(lang, "SILK_FLOWER"),
+  },
+  DENDROBIUM: {
+    description: "DENDROBIUM",
+    category: categories.local_specialties,
+    name: (lang) => translateByLangAndKey(lang, "DENDROBIUM"),
+  },
+  COR_LAPIS: {
+    description: "COR_LAPIS",
+    category: categories.local_specialties,
+    name: (lang) => translateByLangAndKey(lang, "COR_LAPIS"),
+  },
+  FLUORESCENT_FUNGUS: {
+    description: "FLUORESCENT_FUNGUS",
+    category: categories.local_specialties,
+    name: (lang) => translateByLangAndKey(lang, "FLUORESCENT_FUNGUS"),
+  },
+  MOURNING_FLOWER: {
+    description: "MOURNING_FLOWER",
+    category: categories.local_specialties,
+    name: (lang) => translateByLangAndKey(lang, "MOURNING_FLOWER"),
+  },
+  TRISHIRAITE: {
+    description: "TRISHIRAITE",
+    category: categories.local_specialties,
+    name: (lang) => translateByLangAndKey(lang, "TRISHIRAITE"),
   },
 };
