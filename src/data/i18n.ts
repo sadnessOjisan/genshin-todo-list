@@ -1,4 +1,5 @@
 import type { Lang } from "../type/lang";
+import { TODO_KEY } from "./todo-data";
 
 export type VocabularyKey =
   | "PAGE_TITLE"
@@ -7,13 +8,13 @@ export type VocabularyKey =
   | "DAILY_CATEGORY_DESCRIPTION"
   | "WEEKLY_CATEGORY_NAME"
   | "WEEKLY_CATEGORY_DESCRIPTION"
-  | "DAILY_MISSION_1_NAME"
-  | "DAILY_MISSION_2_NAME"
-  | "DAILY_MISSION_3_NAME"
-  | "DAILY_MISSION_4_NAME"
-  | "WEEKLY_BOSS_1_NAME"
-  | "WEEKLY_BOSS_2_NAME"
-  | "WEEKLY_BOSS_3_NAME"
+  | `${Extract<TODO_KEY, "DAILY_MISSION_1">}_NAME`
+  | `${Extract<TODO_KEY, "DAILY_MISSION_2">}_NAME`
+  | `${Extract<TODO_KEY, "DAILY_MISSION_3">}_NAME`
+  | `${Extract<TODO_KEY, "DAILY_MISSION_4">}_NAME`
+  | `${Extract<TODO_KEY, "WEEKLY_BOSS_1">}_NAME`
+  | `${Extract<TODO_KEY, "WEEKLY_BOSS_2">}_NAME`
+  | `${Extract<TODO_KEY, "WEEKLY_BOSS_3">}_NAME`
   | "LOCAL_SPECIALITIES_CATEGORY_NAME"
   | "LOCAL_SPECIALITIES_CATEGORY_DESCRIPTION"
   | "SILK_FLOWER"

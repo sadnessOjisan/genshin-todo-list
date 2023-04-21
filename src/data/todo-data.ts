@@ -4,14 +4,14 @@ import { add, isMonday, nextMonday, set } from "../util/date";
 import { jaVocaburary, VOCABULARY, type VocabularyKey } from "./i18n";
 
 export type TODO_KEY =
-  | "mission1"
-  | "mission2"
-  | "mission3"
-  | "mission4"
-  | "weekly_boss1"
-  | "weekly_boss2"
-  | "weekly_boss3"
-  | "silk_flower"
+  | "DAILY_MISSION_1"
+  | "DAILY_MISSION_2"
+  | "DAILY_MISSION_3"
+  | "DAILY_MISSION_4"
+  | "WEEKLY_BOSS_1"
+  | "WEEKLY_BOSS_2"
+  | "WEEKLY_BOSS_3"
+  | "SILK_FLOWER"
   | "COR_LAPIS"
   | "DENDROBIUM"
   | "FLUORESCENT_FUNGUS"
@@ -19,14 +19,14 @@ export type TODO_KEY =
   | "TRISHIRAITE";
 
 export const TODO_KEYS = allElements<TODO_KEY>()([
-  "mission1",
-  "mission2",
-  "mission3",
-  "mission4",
-  "weekly_boss1",
-  "weekly_boss2",
-  "weekly_boss3",
-  "silk_flower",
+  "DAILY_MISSION_1",
+  "DAILY_MISSION_2",
+  "DAILY_MISSION_3",
+  "DAILY_MISSION_4",
+  "WEEKLY_BOSS_1",
+  "WEEKLY_BOSS_2",
+  "WEEKLY_BOSS_3",
+  "SILK_FLOWER",
   "COR_LAPIS",
   "DENDROBIUM",
   "FLUORESCENT_FUNGUS",
@@ -169,44 +169,44 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
   /**
    * １つ目のデイリーミッション
    */
-  mission1: {
+  DAILY_MISSION_1: {
     category: categories.daily_mission,
     name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_1_NAME"),
   },
   /**
    * ２つ目のデイリーミッション
    */
-  mission2: {
+  DAILY_MISSION_2: {
     category: categories.daily_mission,
     name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_2_NAME"),
   },
   /**
    * 3つ目のデイリーミッション
    */
-  mission3: {
+  DAILY_MISSION_3: {
     category: categories.daily_mission,
     name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_3_NAME"),
   },
   /**
    * 4つ目のデイリーミッション
    */
-  mission4: {
+  DAILY_MISSION_4: {
     category: categories.daily_mission,
     name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_4_NAME"),
   },
-  weekly_boss1: {
+  WEEKLY_BOSS_1: {
     category: categories.weekly_mission,
     name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_1_NAME"),
   },
-  weekly_boss2: {
+  WEEKLY_BOSS_2: {
     category: categories.weekly_mission,
     name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_2_NAME"),
   },
-  weekly_boss3: {
+  WEEKLY_BOSS_3: {
     category: categories.weekly_mission,
     name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_3_NAME"),
   },
-  silk_flower: {
+  SILK_FLOWER: {
     category: categories.local_specialties,
     name: (lang) => translateByLangAndKey(lang, "SILK_FLOWER"),
   },

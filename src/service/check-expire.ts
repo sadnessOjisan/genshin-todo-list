@@ -3,7 +3,7 @@ import { LocalStorabeWrapper } from "../repository/local-storage";
 
 export type ExpireDateState = { [x in TODO_KEY]: Date | null };
 
-export const createInitialState = () => ({
+export const createInitialState = (): ExpireDateState => ({
   mission1: null,
   mission2: null,
   mission3: null,
