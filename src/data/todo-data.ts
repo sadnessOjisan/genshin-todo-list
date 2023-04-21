@@ -94,7 +94,7 @@ export class FreeCheckLogic {
   }
 }
 
-const createCategoryDescription = (lang: Lang, categoryKey: VocabularyKey) => {
+const translateByLangAndKey = (lang: Lang, categoryKey: VocabularyKey) => {
   const vocav = VOCABULARY[lang][categoryKey];
   if (!vocav) {
     console.warn(`lang: ${lang} の ${categoryKey} がありません。`);
@@ -106,10 +106,10 @@ const createCategoryDescription = (lang: Lang, categoryKey: VocabularyKey) => {
 export const dailyMissionLogic = {
   key: "daily_mission" as const,
   name: (lang: Lang): string =>
-    createCategoryDescription(lang, "DAILY_CATEGORY_NAME"),
+    translateByLangAndKey(lang, "DAILY_CATEGORY_NAME"),
   logic: {
     descriptipon: (lang: Lang): string =>
-      createCategoryDescription(lang, "DAILY_CATEGORY_DESCRIPTION"),
+      translateByLangAndKey(lang, "DAILY_CATEGORY_DESCRIPTION"),
     func: FreeCheckLogic.canFreeDailyTodo,
   },
 };
@@ -117,10 +117,10 @@ export const dailyMissionLogic = {
 const weeklyMissionLogic = {
   key: "weekly_mission" as const,
   name: (lang: Lang): string =>
-    createCategoryDescription(lang, "WEEKLY_CATEGORY_NAME"),
+    translateByLangAndKey(lang, "WEEKLY_CATEGORY_NAME"),
   logic: {
     descriptipon: (lang: Lang): string =>
-      createCategoryDescription(lang, "WEEKLY_CATEGORY_DESCRIPTION"),
+      translateByLangAndKey(lang, "WEEKLY_CATEGORY_DESCRIPTION"),
     func: FreeCheckLogic.canFreeDailyTodo,
   },
 };
@@ -137,16 +137,7 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
   mission1: {
     description: "daily mission(1)",
     category: categories.daily_mission,
-    name: (lang) => {
-      switch (lang) {
-        case "ja":
-          return "デイリーミッション1";
-        case "en":
-          return "daily mission1";
-        default:
-          return "デイリーミッション1";
-      }
-    },
+    name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_1_NAME"),
   },
   /**
    * ２つ目のデイリーミッション
@@ -154,16 +145,7 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
   mission2: {
     description: "daily mission(2)",
     category: categories.daily_mission,
-    name: (lang) => {
-      switch (lang) {
-        case "ja":
-          return "デイリーミッション2";
-        case "en":
-          return "daily mission2";
-        default:
-          return "デイリーミッション2";
-      }
-    },
+    name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_2_NAME"),
   },
   /**
    * 3つ目のデイリーミッション
@@ -171,16 +153,7 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
   mission3: {
     description: "daily mission(2)",
     category: categories.daily_mission,
-    name: (lang) => {
-      switch (lang) {
-        case "ja":
-          return "デイリーミッション3";
-        case "en":
-          return "daily mission3";
-        default:
-          return "デイリーミッション3";
-      }
-    },
+    name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_3_NAME"),
   },
   /**
    * 4つ目のデイリーミッション
@@ -188,57 +161,21 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
   mission4: {
     description: "daily mission(4)",
     category: categories.daily_mission,
-    name: (lang) => {
-      switch (lang) {
-        case "ja":
-          return "デイリーミッション4";
-        case "en":
-          return "daily mission4";
-        default:
-          return "デイリーミッション4";
-      }
-    },
+    name: (lang) => translateByLangAndKey(lang, "DAILY_MISSION_4_NAME"),
   },
   weekly_boss1: {
     description: "weekly boss (1)",
     category: categories.weekly_mission,
-    name: (lang) => {
-      switch (lang) {
-        case "ja":
-          return "週次ボス(1)";
-        case "en":
-          return "weekly boss(1)";
-        default:
-          return "週次ボス(1)";
-      }
-    },
+    name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_1_NAME"),
   },
   weekly_boss2: {
     description: "weekly boss (2)",
     category: categories.weekly_mission,
-    name: (lang) => {
-      switch (lang) {
-        case "ja":
-          return "週次ボス(2)";
-        case "en":
-          return "weekly boss(2)";
-        default:
-          return "週次ボス(2)";
-      }
-    },
+    name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_2_NAME"),
   },
   weekly_boss3: {
     description: "weekly boss (3)",
     category: categories.weekly_mission,
-    name: (lang) => {
-      switch (lang) {
-        case "ja":
-          return "週次ボス(3)";
-        case "en":
-          return "weekly boss(3)";
-        default:
-          return "週次ボス(3)";
-      }
-    },
+    name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_3_NAME"),
   },
 };
