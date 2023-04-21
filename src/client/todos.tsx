@@ -3,6 +3,11 @@
 import { type ChangeEvent, type FC, useEffect, useMemo, useState } from "react";
 import { type CATEGORY_KEY, TODO_DATA, type TODO_KEY } from "../data/todo-data";
 import { LocalStorabeWrapper } from "../repository/local-storage";
+import {
+  type ExpireDateState,
+  getAllTodosExpireDates,
+  updateAllTodosExpire,
+} from "../service/check-expire";
 import type { Lang } from "../type/lang";
 import { isTodo } from "../util/assert";
 import { strictEntries } from "../util/object";
@@ -25,7 +30,7 @@ type EachCategoryTodos = {
 
 const getTodoByCategoryKey = (
   key: CATEGORY_KEY,
-  state: State,
+  state: ExpireDateState,
   lang: Lang
 ): EachCategoryTodos => {
   const todos = strictEntries(TODO_DATA)
@@ -51,12 +56,8 @@ const getTodoByCategoryKey = (
   };
 };
 
-type State = {
-  [x in TODO_KEY]: Date | null;
-};
-
 export const Todos: FC<Props> = ({ lang }) => {
-  const [state, setState] = useState<State>({
+  const [state, setState] = useState<ExpireDateState>({
     mission1: null,
     mission2: null,
     mission3: null,
@@ -67,22 +68,16 @@ export const Todos: FC<Props> = ({ lang }) => {
   });
   useEffect(() => {
     const myStorage = new LocalStorabeWrapper(window.localStorage);
-    const date1 = myStorage.getSavedDate("mission1");
-    const date2 = myStorage.getSavedDate("mission2");
-    const date3 = myStorage.getSavedDate("mission3");
-    const date4 = myStorage.getSavedDate("mission4");
-    const weeklyBoss1ExpiredDate = myStorage.getSavedDate("weekly_boss1");
-    const weeklyBoss2ExpiredDate = myStorage.getSavedDate("weekly_boss2");
-    const weeklyBoss3ExpiredDate = myStorage.getSavedDate("weekly_boss3");
-
+    const pastSavedState = getAllTodosExpireDates(myStorage);
+    const updatedState = updateAllTodosExpire(pastSavedState, myStorage);
     setState({
-      mission1: date1,
-      mission2: date2,
-      mission3: date3,
-      mission4: date4,
-      weekly_boss1: weeklyBoss1ExpiredDate,
-      weekly_boss2: weeklyBoss2ExpiredDate,
-      weekly_boss3: weeklyBoss3ExpiredDate,
+      mission1: updatedState["mission1"],
+      mission2: updatedState["mission2"],
+      mission3: updatedState["mission3"],
+      mission4: updatedState["mission4"],
+      weekly_boss1: updatedState["weekly_boss1"],
+      weekly_boss2: updatedState["weekly_boss2"],
+      weekly_boss3: updatedState["weekly_boss3"],
     });
   }, []);
 
