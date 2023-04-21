@@ -46,15 +46,15 @@ const getTodoByCategoryKey = (
       const todoKey = v[0];
       const todo = v[1];
       const savedDate = state[todoKey];
-      const time = state[todoKey];
+      const shouldRelease = savedDate
+        ? todo.category.logic.func(savedDate, new Date())
+        : true;
       return {
         key: todoKey,
         value: todo.name(lang),
         logic: todo.category.logic.descriptipon(lang),
-        time: time,
-        initialCheck: savedDate
-          ? todo.category.logic.func(savedDate, new Date())
-          : false,
+        time: savedDate,
+        initialCheck: !shouldRelease,
       };
     });
 
