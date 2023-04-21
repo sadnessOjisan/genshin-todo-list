@@ -1,7 +1,12 @@
 "use client";
 
 import { type ChangeEvent, type FC, useEffect, useMemo, useState } from "react";
-import { type CATEGORY_KEY, TODO_DATA, type TODO_KEY } from "../data/todo-data";
+import {
+  type CATEGORY_KEY,
+  TODO_DATA,
+  type TODO_KEY,
+  categories,
+} from "../data/todo-data";
 import { LocalStorabeWrapper } from "../repository/local-storage";
 import {
   type ExpireDateState,
@@ -19,6 +24,8 @@ interface Props {
 
 type EachCategoryTodos = {
   category: CATEGORY_KEY;
+  categoryName: string;
+  categoryLogicDescriptioin: string;
   todos: ReadonlyArray<{
     key: TODO_KEY;
     value: string;
@@ -50,8 +57,11 @@ const getTodoByCategoryKey = (
           : false,
       };
     });
+
   return {
     category: key,
+    categoryName: categories[key].name(lang),
+    categoryLogicDescriptioin: categories[key].logic.descriptipon(lang),
     todos,
   };
 };
@@ -120,7 +130,8 @@ const EachCategoryTodos: FC<{
   handleOnChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }> = ({ todos, handleOnChange }) => (
   <div>
-    <h2>{todos.category}</h2>
+    <h2>{todos.categoryName}</h2>
+    <p>{todos.categoryLogicDescriptioin}</p>
     <ul>
       {todos.todos.map((d) => {
         const { time } = d;
@@ -138,7 +149,6 @@ const EachCategoryTodos: FC<{
                 <p>
                   {d.value}(at {time && <Time time={time} />})
                 </p>
-                <p>{d.logic}</p>
               </label>
             </div>
           </li>
