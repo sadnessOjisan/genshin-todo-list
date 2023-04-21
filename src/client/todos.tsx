@@ -94,6 +94,7 @@ export const Todos: FC<Props> = ({ lang }) => {
   const handleChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
     const myStorage = new LocalStorabeWrapper(window.localStorage);
     const checked = e.target.checked;
+    console.log("checked", checked);
     const value = e.target.value;
     if (!isTodo(value)) {
       throw new Error("input value is not valid.");
@@ -143,7 +144,7 @@ const EachCategoryTodos: FC<{
                 id={d.key}
                 onChange={handleOnChange}
                 value={d.key}
-                defaultChecked={d.initialCheck}
+                checked={d.initialCheck}
               />
               <label htmlFor={d.key}>
                 <p>
