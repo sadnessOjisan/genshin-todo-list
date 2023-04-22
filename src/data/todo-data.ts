@@ -31,6 +31,9 @@ export type TODO_KEY =
   | "WEEKLY_BOSS_1"
   | "WEEKLY_BOSS_2"
   | "WEEKLY_BOSS_3"
+  | "BOUNTIES_1" // 討伐懸賞
+  | "BOUNTIES_2" // 討伐懸賞
+  | "BOUNTIES_3" // 討伐懸賞
   | "ARTIFACT_MARATHON"
   | LOCAL_SPECIALITIES_TODO_KEY
   | "CRYSTAL_CHUNK_1"
@@ -45,6 +48,9 @@ export const TODO_KEYS = allElements<TODO_KEY>()([
   "WEEKLY_BOSS_1",
   "WEEKLY_BOSS_2",
   "WEEKLY_BOSS_3",
+  "BOUNTIES_1",
+  "BOUNTIES_2",
+  "BOUNTIES_3",
   "ARTIFACT_MARATHON",
   "SILK_FLOWER",
   "COR_LAPIS",
@@ -262,6 +268,18 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
   WEEKLY_BOSS_3: {
     category: categories.WEEKLY,
     name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_3"),
+  },
+  BOUNTIES_1: {
+    category: categories.WEEKLY,
+    name: (lang) => translateByLangAndKey(lang, "BOUNTIES_1"),
+  },
+  BOUNTIES_2: {
+    category: categories.WEEKLY,
+    name: (lang) => translateByLangAndKey(lang, "BOUNTIES_2"),
+  },
+  BOUNTIES_3: {
+    category: categories.WEEKLY,
+    name: (lang) => translateByLangAndKey(lang, "BOUNTIES_3"),
   },
   ARTIFACT_MARATHON: {
     category: categories.DAILY,
