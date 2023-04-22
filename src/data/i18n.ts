@@ -1,5 +1,5 @@
 import type { Lang } from "../type/lang";
-import { CATEGORY_KEY, type TODO_KEY } from "./todo-data";
+import { type CATEGORY_KEY, type TODO_KEY } from "./todo-data";
 
 export type VocabularyKey =
   | "PAGE_TITLE"
@@ -16,6 +16,9 @@ export type VocabularyByLang = {
   };
 };
 
+/**
+ * @see https://genshin-dictionary.com/ja/tags/specialty/
+ */
 export const jaVocaburary: Required<Vocabulary> = {
   PAGE_TITLE: "原神TODOリスト",
   PAGE_DESCRIPTION:
@@ -37,9 +40,7 @@ export const jaVocaburary: Required<Vocabulary> = {
   WEEKLY_BOSS_1: "週時ボス(1)",
   WEEKLY_BOSS_2: "週時ボス(2)",
   WEEKLY_BOSS_3: "週時ボス(3)",
-  ARTIFACT_MARATHON_1: "聖遺物マラソン１",
-  ARTIFACT_MARATHON_2: "聖遺物マラソン２",
-  ARTIFACT_MARATHON_3: "聖遺物マラソン３",
+  ARTIFACT_MARATHON: "聖遺物マラソン",
   SILK_FLOWER: "霓裳花",
   COR_LAPIS: "石珀",
   DENDROBIUM: "血石華",
@@ -48,6 +49,16 @@ export const jaVocaburary: Required<Vocabulary> = {
   TRISHIRAITE: "サングイト",
   CALLA_LILY: "ドドリアン",
   CECILIA: "セシリアの花",
+  DANDELION_SEED: "蒲公英の種",
+  PHILANEMO_MUSHROOM: "慕風のマッシュルーム",
+  SMALL_LAMP_GRASS: "イグサ",
+  VALBERRY: "ヴァルベリー",
+  WINDWHEEL_ASTER: "風車アスター",
+  GLAZE_LILY: "瑠璃百合",
+  QINGXIN: "清心",
+  VIOLETGRASS: "瑠璃袋",
+  JUEYUN_CHILI: "絶雲の唐辛子",
+  NOCTILUCOUS_JADE: "夜泊石",
   CRYSTAL_CHUNK_1: "水晶の塊マラソン１",
   CRYSTAL_CHUNK_2: "水晶の塊マラソン２",
   CRYSTAL_CHUNK_3: "水晶の塊マラソン３",

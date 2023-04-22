@@ -3,17 +3,7 @@ import { allElements } from "../util/array";
 import { add, isMonday, nextMonday, set } from "../util/date";
 import { jaVocaburary, VOCABULARY, type VocabularyKey } from "./i18n";
 
-export type TODO_KEY =
-  | "DAILY_MISSION_1"
-  | "DAILY_MISSION_2"
-  | "DAILY_MISSION_3"
-  | "DAILY_MISSION_4"
-  | "WEEKLY_BOSS_1"
-  | "WEEKLY_BOSS_2"
-  | "WEEKLY_BOSS_3"
-  | "ARTIFACT_MARATHON_1"
-  | "ARTIFACT_MARATHON_2"
-  | "ARTIFACT_MARATHON_3"
+type LOCAL_SPECIALITIES_TODO_KEY =
   | "SILK_FLOWER"
   | "COR_LAPIS"
   | "DENDROBIUM"
@@ -22,6 +12,27 @@ export type TODO_KEY =
   | "TRISHIRAITE"
   | "CALLA_LILY"
   | "CECILIA"
+  | "DANDELION_SEED"
+  | "PHILANEMO_MUSHROOM"
+  | "SMALL_LAMP_GRASS"
+  | "VALBERRY"
+  | "WINDWHEEL_ASTER"
+  | "GLAZE_LILY"
+  | "QINGXIN"
+  | "VIOLETGRASS"
+  | "JUEYUN_CHILI"
+  | "NOCTILUCOUS_JADE";
+
+export type TODO_KEY =
+  | "DAILY_MISSION_1"
+  | "DAILY_MISSION_2"
+  | "DAILY_MISSION_3"
+  | "DAILY_MISSION_4"
+  | "WEEKLY_BOSS_1"
+  | "WEEKLY_BOSS_2"
+  | "WEEKLY_BOSS_3"
+  | "ARTIFACT_MARATHON"
+  | LOCAL_SPECIALITIES_TODO_KEY
   | "CRYSTAL_CHUNK_1"
   | "CRYSTAL_CHUNK_2"
   | "CRYSTAL_CHUNK_3";
@@ -34,9 +45,7 @@ export const TODO_KEYS = allElements<TODO_KEY>()([
   "WEEKLY_BOSS_1",
   "WEEKLY_BOSS_2",
   "WEEKLY_BOSS_3",
-  "ARTIFACT_MARATHON_1",
-  "ARTIFACT_MARATHON_2",
-  "ARTIFACT_MARATHON_3",
+  "ARTIFACT_MARATHON",
   "SILK_FLOWER",
   "COR_LAPIS",
   "DENDROBIUM",
@@ -45,6 +54,16 @@ export const TODO_KEYS = allElements<TODO_KEY>()([
   "TRISHIRAITE",
   "CALLA_LILY",
   "CECILIA",
+  "DANDELION_SEED",
+  "PHILANEMO_MUSHROOM",
+  "SMALL_LAMP_GRASS",
+  "VALBERRY",
+  "WINDWHEEL_ASTER",
+  "GLAZE_LILY",
+  "QINGXIN",
+  "VIOLETGRASS",
+  "JUEYUN_CHILI",
+  "NOCTILUCOUS_JADE",
   "CRYSTAL_CHUNK_1",
   "CRYSTAL_CHUNK_2",
   "CRYSTAL_CHUNK_3",
@@ -73,7 +92,7 @@ type Cateogory = {
   logic: Logic;
 };
 
-interface TODO_VALUE {
+export interface TODO_VALUE {
   name: (lang: Lang) => string;
   category: Cateogory;
 }
@@ -244,17 +263,9 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
     category: categories.WEEKLY,
     name: (lang) => translateByLangAndKey(lang, "WEEKLY_BOSS_3"),
   },
-  ARTIFACT_MARATHON_1: {
+  ARTIFACT_MARATHON: {
     category: categories.DAILY,
-    name: (lang) => translateByLangAndKey(lang, "ARTIFACT_MARATHON_1"),
-  },
-  ARTIFACT_MARATHON_2: {
-    category: categories.DAILY,
-    name: (lang) => translateByLangAndKey(lang, "ARTIFACT_MARATHON_2"),
-  },
-  ARTIFACT_MARATHON_3: {
-    category: categories.DAILY,
-    name: (lang) => translateByLangAndKey(lang, "ARTIFACT_MARATHON_3"),
+    name: (lang) => translateByLangAndKey(lang, "ARTIFACT_MARATHON"),
   },
   SILK_FLOWER: {
     category: categories.LOCAL_SPECIALITIES,
@@ -287,6 +298,46 @@ export const TODO_DATA: Record<TODO_KEY, TODO_VALUE> = {
   CECILIA: {
     category: categories.LOCAL_SPECIALITIES,
     name: (lang) => translateByLangAndKey(lang, "CECILIA"),
+  },
+  DANDELION_SEED: {
+    category: categories.LOCAL_SPECIALITIES,
+    name: (lang) => translateByLangAndKey(lang, "DANDELION_SEED"),
+  },
+  PHILANEMO_MUSHROOM: {
+    category: categories.LOCAL_SPECIALITIES,
+    name: (lang) => translateByLangAndKey(lang, "PHILANEMO_MUSHROOM"),
+  },
+  SMALL_LAMP_GRASS: {
+    category: categories.LOCAL_SPECIALITIES,
+    name: (lang) => translateByLangAndKey(lang, "SMALL_LAMP_GRASS"),
+  },
+  VALBERRY: {
+    category: categories.LOCAL_SPECIALITIES,
+    name: (lang) => translateByLangAndKey(lang, "VALBERRY"),
+  },
+  WINDWHEEL_ASTER: {
+    category: categories.LOCAL_SPECIALITIES,
+    name: (lang) => translateByLangAndKey(lang, "WINDWHEEL_ASTER"),
+  },
+  GLAZE_LILY: {
+    category: categories.LOCAL_SPECIALITIES,
+    name: (lang) => translateByLangAndKey(lang, "GLAZE_LILY"),
+  },
+  QINGXIN: {
+    category: categories.LOCAL_SPECIALITIES,
+    name: (lang) => translateByLangAndKey(lang, "QINGXIN"),
+  },
+  VIOLETGRASS: {
+    category: categories.LOCAL_SPECIALITIES,
+    name: (lang) => translateByLangAndKey(lang, "VIOLETGRASS"),
+  },
+  JUEYUN_CHILI: {
+    category: categories.LOCAL_SPECIALITIES,
+    name: (lang) => translateByLangAndKey(lang, "JUEYUN_CHILI"),
+  },
+  NOCTILUCOUS_JADE: {
+    category: categories.LOCAL_SPECIALITIES,
+    name: (lang) => translateByLangAndKey(lang, "NOCTILUCOUS_JADE"),
   },
   CRYSTAL_CHUNK_1: {
     category: categories.CRYSTAL_CHUNK,
